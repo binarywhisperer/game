@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use JavaScript;
 
-class GameController extends Controller
+class TicTacToeController extends Controller
 {
     //
     function index(){
@@ -30,6 +30,6 @@ class GameController extends Controller
         JavaScript::put([
             'board' => $board
         ]);
-        return view('game');
+        return view('tictactoe');
     }
 }

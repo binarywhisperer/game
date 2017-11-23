@@ -1,12 +1,30 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
 @import "variables";
 
 html, body {
   height: 100vh;
+  margin:0;
+}
+
+#nav{
+  background: linear-gradient(-45deg,$navGradient1,$navGradient2);
+  height: 80%;
+  width: 100%;
+  position: fixed;
+  display:flex;
+}
+
+.navHide{
+  color:#fff;
+  margin: 0 auto;
+  align-self: flex-end;
+  display: flex;
+}
+.navShow{
+  background: linear-gradient(-45deg,$navGradient1,$navGradient2);
+  color: #fff;
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
 }
 .container{
   display:inline-flex;

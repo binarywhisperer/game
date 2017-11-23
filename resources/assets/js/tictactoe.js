@@ -1,7 +1,7 @@
 
 window.Vue = require('vue');
 
-window.Event = new class{
+window.GameEvent = new class{
     constructor(){
         this.vue = new Vue();
     }
@@ -13,12 +13,11 @@ window.Event = new class{
     }
 };
 
-Vue.component('board', require('./components/Board.vue'));
-Vue.component('row', require('./components/Row.vue'));
-Vue.component('location', require('./components/Location.vue'));
+Vue.component('board', require('./components/tictactoe/Board.vue'));
+Vue.component('location', require('./components/tictactoe/Location.vue'));
 
-const app = new Vue({
-    el: '#app',
+const game = new Vue({
+    el: '#game',
     data:{
         board: board
     },
@@ -53,7 +52,7 @@ const app = new Vue({
         }
     },
     created(){
-      Event.listen('locationSelected', (location) => this.locationSelected(location));
+        GameEvent.listen('locationSelected', (location) => this.locationSelected(location));
     },
     mounted(){
         console.log(this.board);

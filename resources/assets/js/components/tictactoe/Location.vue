@@ -12,7 +12,7 @@
                 return this.$root.hasPlayerEdge(this.id);
             },
             locationSelected(){
-                Event.fire('locationSelected', this.id);
+                GameEvent.fire('locationSelected', this.id);
             }
         },
         mounted() {

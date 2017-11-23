@@ -11,5 +11,5 @@
 |
 */
 
-Route::get('/','GameController@index');
+Route::get('/','TicTacToeController@index');
 
