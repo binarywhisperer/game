@@ -1,5 +1,5 @@
 <template>
-    <div v-on:click="locationSelected" class="location" id="id">
+    <div v-on:click="locationSelected" class="location">
         {{locationHasPlayer()}}
     </div>
 </template>

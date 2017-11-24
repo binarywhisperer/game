@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    function games(){
+        return $this->tictactoes();
+    }
+
+    function tictactoes(){
+        return $this->belongsToMany('\App\TicTacToe','tic_tac_toe_user');
+    }
 }

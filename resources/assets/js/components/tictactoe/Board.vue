@@ -20,11 +20,6 @@
 
 <script>
     export default {
-        data: function(){
-                    return{
-                        board: this.board
-                    }
-                },
         methods:{
         },
         mounted() {

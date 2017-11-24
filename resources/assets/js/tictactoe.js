@@ -16,12 +16,20 @@ window.GameEvent = new class{
 Vue.component('board', require('./components/tictactoe/Board.vue'));
 Vue.component('location', require('./components/tictactoe/Location.vue'));
 
+Vue.component('join-game', require('./components/tictactoe/JoinGame.vue'));
+Vue.component('my-game', require('./components/tictactoe/MyGame.vue'));
+
 const game = new Vue({
     el: '#game',
     data:{
-        board: board
+        board: board,
+        myGames: myGames,
+        availableGames: availableGames
     },
     methods: {
+        createGame(){
+            axios.put('tictactoe').then(response => function(response){console.log(response);})
+        },
         hasPlayerEdge(vert){
             let edge = this.hasEdge(0,vert);
             if(edge != false){

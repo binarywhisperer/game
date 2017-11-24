@@ -32,7 +32,7 @@ body {
   margin: 0 auto;
 }
 
-.container {
+.game-container {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;

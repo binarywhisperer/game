@@ -11,7 +11,9 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="css/app.css" rel="stylesheet">
+    <link href="css/bulma.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
 </head>
 <body>
