@@ -99,7 +99,7 @@
         <a class="btn btn-link" href="{{ url('/logout') }}">
             Log Out
         </a>
-        <gamer></gamer>
+        <gamer ></gamer>
     @endif
     <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide">Hide It</div>
 </div>

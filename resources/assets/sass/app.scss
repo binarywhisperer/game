@@ -6,7 +6,7 @@ html, body {
 }
 
 #nav{
-  background: linear-gradient(-45deg,$navGradient1,$navGradient2);
+  background: linear-gradient($background-gradient);
   height: 80%;
   width: 100%;
   position: fixed;
@@ -20,7 +20,7 @@ html, body {
   display: flex;
 }
 .navShow{
-  background: linear-gradient(-45deg,$navGradient1,$navGradient2);
+  background: linear-gradient($background-gradient);
   color: #fff;
   width: 200px;
   text-align: center;
@@ -33,11 +33,38 @@ html, body {
   align-items: center;
   justify-content: center;
 }
+.gamers{
+  background: #fff;
+  color:#333;
+  display: flex;
+  align-self: flex-start;
+}
+.game-board{
+  display: flex;
+  align-self: center;
+}
 .board{
   display: grid;
-  height:600px;
   width:600px;
   background: #333;
+}
+.gamers{
+  display: inline-grid;
+  grid-column: 1/span 3;
+}
+.gamer{
+  width: 270px;
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+.gamer-vs{
+  width: 60px;
+  border: 2px solid rgba(255, 255, 255, 1);
+}
+.gamer, .gamer-vs{
+    grid-row: 1/span 1;
+    font-size: 24px;
+    display: grid;
+    text-align: center;
 }
 .row{
   display:inline-grid;

@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="game-container" id="game">
-        <board :board="board"></board>
+        <div class="game-board">
+        <board :users="users"
+               :board="board"></board>
         <div class="game-selector">
             <my-game   :id = game.id
                        :board = game.board
@@ -18,6 +20,7 @@
             <join-game   :id = game.id
                     :users_count = game.users_count
                     v-for="game in availableGames" :key="game.id"></join-game>
+        </div>
         </div>
     </div>
 

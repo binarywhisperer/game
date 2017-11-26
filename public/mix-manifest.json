@@ -1,5 +1,5 @@
 {
+    "/js/master.js": "/js/master.js",
     "/js/tictactoe.js": "/js/tictactoe.js",
-    "/css/app.css": "/css/app.css",
-    "/js/master.js": "/js/master.js"
+    "/css/app.css": "/css/app.css"
 }

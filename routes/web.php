@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/tictactoe','TicTacToeController@index');
-
+Route::get('/','TicTacToeController@index');
 Route::get('/tictactoe/{tictactoe}', 'TicTacToeController@show');
 Route::post('/tictactoe/{tictactoe}', 'TicTacToeController@update');
 Route::post('/tictactoe/{tictactoe}/join', 'TicTacToeController@join');

@@ -33,13 +33,16 @@ class TicTacToeController extends Controller
     ];
     public function index()
     {
-        $myGames = TicTacToe::withCount('users')->having('users_count','<',2)->get();
+        $user = Auth::user();
+        $myGames = $user->tictactoes()->get();
         $availableGames = TicTacToe::withCount('users')->having('users_count','<',2)->get();
 
         JavaScript::put([
             'board' => $this->board,
             'myGames' => $myGames,
-            'availableGames' => $availableGames
+            'availableGames' => $availableGames,
+            'users' => [$user,['name'=> "A.I."]],
+            'gamer' => $user,
         ]);
         return view('tictactoe');
     }
@@ -56,6 +59,8 @@ class TicTacToeController extends Controller
             'board' => '[]'
         ]);
         $tictactoe->users()->attach($user->id);
+        $tictactoe->users = $tictactoe->users()->get();
+        return $tictactoe;
     }
 
     /**
@@ -109,11 +114,14 @@ class TicTacToeController extends Controller
     {
         $user = Auth::user();
         $tictactoe->users()->attach($user->id);
+        $tictactoe->users = $tictactoe->users()->get();
+        return $tictactoe;
     }
 
 
     public function json(TicTacToe $tictactoe)
     {
+        $tictactoe->users = $tictactoe->users()->get();
         return $tictactoe;
     }
 }

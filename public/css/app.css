@@ -5,7 +5,8 @@ body {
 }
 
 #nav {
-  background: linear-gradient(-45deg, #555, #333);
+  background: -webkit-gradient(linear, left top, right top, from(#0f0c29), color-stop(#302b63), to(#24243e));
+  background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
   height: 80%;
   width: 100%;
   position: fixed;
@@ -25,7 +26,8 @@ body {
 }
 
 .navShow {
-  background: linear-gradient(-45deg, #555, #333);
+  background: -webkit-gradient(linear, left top, right top, from(#0f0c29), color-stop(#302b63), to(#24243e));
+  background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
   color: #fff;
   width: 200px;
   text-align: center;
@@ -46,11 +48,51 @@ body {
           justify-content: center;
 }
 
+.gamers {
+  background: #fff;
+  color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.game-board {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+
 .board {
   display: grid;
-  height: 600px;
   width: 600px;
   background: #333;
+}
+
+.gamers {
+  display: inline-grid;
+  grid-column: 1/span 3;
+}
+
+.gamer {
+  width: 270px;
+  border-bottom: 1px solid white;
+}
+
+.gamer-vs {
+  width: 60px;
+  border: 2px solid white;
+}
+
+.gamer,
+.gamer-vs {
+  grid-row: 1/span 1;
+  font-size: 24px;
+  display: grid;
+  text-align: center;
 }
 
 .row {
