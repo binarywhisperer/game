@@ -18,20 +18,19 @@ html, body {
   margin: 0 auto;
   align-self: flex-end;
   display: flex;
+
+  img{
+    transform: scaleY(-1);
+  }
 }
 .navShow{
-  background: linear-gradient($background-gradient);
   color: #fff;
   width: 200px;
   text-align: center;
   margin: 0 auto;
 }
 .game-container{
-  display:inline-flex;
-  height:100%;
-  width:100%;
-  align-items: center;
-  justify-content: center;
+
 }
 .gamers{
   background: #fff;
@@ -40,8 +39,8 @@ html, body {
   align-self: flex-start;
 }
 .game-board{
-  display: flex;
-  align-self: center;
+  margin: 0 auto;
+  width: 600px;
 }
 .board{
   display: grid;

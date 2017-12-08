@@ -25,27 +25,16 @@ body {
   display: flex;
 }
 
+.navHide img {
+  -webkit-transform: scaleY(-1);
+          transform: scaleY(-1);
+}
+
 .navShow {
-  background: -webkit-gradient(linear, left top, right top, from(#0f0c29), color-stop(#302b63), to(#24243e));
-  background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
   color: #fff;
   width: 200px;
   text-align: center;
   margin: 0 auto;
-}
-
-.game-container {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  height: 100%;
-  width: 100%;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
 .gamers {
@@ -59,11 +48,8 @@ body {
 }
 
 .game-board {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-item-align: center;
-      align-self: center;
+  margin: 0 auto;
+  width: 600px;
 }
 
 .board {

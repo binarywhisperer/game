@@ -101,6 +101,6 @@
         </a>
         <gamer ></gamer>
     @endif
-    <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide">Hide It</div>
+    <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide"><img src="img/nav.png"></div>
 </div>
-<div onclick="document.getElementById('nav').className = 'animated bounceInDown'" class="navShow">Show It</div>
+<div onclick="document.getElementById('nav').className = 'animated bounceInDown'" class="navShow"><img src="img/nav.png"></div>

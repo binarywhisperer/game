@@ -11471,14 +11471,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "board" }, [
-    _c("div", { staticClass: "gamers" }, [
-      _c("div", { staticClass: "gamer" }, [_vm._v(_vm._s(_vm.users[0].name))]),
-      _vm._v(" "),
-      _c("div", { staticClass: "gamer-vs" }, [_vm._v("VS")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "gamer" }, [_vm._v(_vm._s(_vm.users[1].name))])
-    ]),
-    _vm._v(" "),
     _c(
       "div",
       { staticClass: "row" },
@@ -11516,7 +11508,15 @@ var render = function() {
         _c("location", { attrs: { id: 10 } })
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "gamers" }, [
+      _c("div", { staticClass: "gamer" }, [_vm._v(_vm._s(_vm.users[0].name))]),
+      _vm._v(" "),
+      _c("div", { staticClass: "gamer-vs" }, [_vm._v("VS")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "gamer" }, [_vm._v(_vm._s(_vm.users[1].name))])
+    ])
   ])
 }
 var staticRenderFns = []
