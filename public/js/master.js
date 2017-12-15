@@ -30024,7 +30024,7 @@ var nav = new Vue({
     el: '#nav',
     data: {
         login: true,
-        user: 'user'
+        gamer: gamer
     },
     methods: {},
     created: function created() {},
@@ -30090,15 +30090,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['gamer'],
-    data: function data() {
-        return {
-            me: gamer
-        };
-    },
     methods: {},
+    computed: {
+        playerColors: function playerColors() {
+            return {
+                background: this.gamer.primaryColor,
+                borderColor: this.gamer.secondaryColor
+            };
+        }
+    },
     mounted: function mounted() {
         console.log(gamer.name);
     }
@@ -30112,8 +30119,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "gamer" }, [
-    _vm._v(_vm._s(_vm.me.name) + " - " + _vm._s(_vm.me.points))
+  return _c("div", { staticClass: "gamer-level" }, [
+    _c("div", { staticClass: "gamer-label" }, [
+      _c("i", { staticClass: "fa fa-user" }),
+      _c("div", { style: _vm.playerColors }, [_vm._v(_vm._s(_vm.gamer.name))])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "gamer-label" }, [
+      _c("i", { staticClass: "fa fa-diamond" }),
+      _c("div", [_vm._v(_vm._s(_vm.gamer.points))])
+    ])
   ])
 }
 var staticRenderFns = []

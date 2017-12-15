@@ -20,6 +20,7 @@ class CreateTicTacToesTable extends Migration
         });
     }
 
+
     /**
      * Reverse the migrations.
      *

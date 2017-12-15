@@ -1,4 +1,4 @@
-
+window._ = require('lodash');
 window.Vue = require('vue');
 
 window.GameEvent = new class{
@@ -14,9 +14,9 @@ window.GameEvent = new class{
 };
 
 Vue.component('board', require('./components/tictactoe/Board.vue'));
-Vue.component('location', require('./components/tictactoe/Location.vue'));
 Vue.component('join-game', require('./components/tictactoe/JoinGame.vue'));
 Vue.component('my-game', require('./components/tictactoe/MyGame.vue'));
+
 
 const game = new Vue({
     el: '#game',
@@ -45,11 +45,11 @@ const game = new Vue({
             return '';
         },
         addEdge(vert1, vert2){
-            this.board.edges.dynamic.unshift([vert1,vert2]);
+            this.board.edges.unshift([vert1,vert2]);
         },
         hasEdge(vert1, vert2){
             let result = false;
-            let edges = this.board.edges.constant.concat(this.board.edges.dynamic);
+            let edges = this.board.edges;
             _.forEach(edges, function(edge){
                 if((edge[0] == vert1 && edge[1] == vert2) || (edge[0] == vert2 && edge[1] == vert1)){
                     result = edge;
@@ -59,7 +59,8 @@ const game = new Vue({
             return result;
         },
         locationSelected(location){
-            this.addEdge(this.board.edges.dynamic.length % 2,location);
+            this.addEdge(this.board.edges.length % 2,location);
+            console.log(this.board.edges);
         }
     },
     created(){

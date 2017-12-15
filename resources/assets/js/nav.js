@@ -4,7 +4,7 @@ const nav = new Vue({
     el: '#nav',
     data:{
         login:true,
-        user: 'user'
+        gamer: gamer
     },
     methods: {
 

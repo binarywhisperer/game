@@ -2,9 +2,11 @@
 
 @section('content')
     <div class="game-container" id="game">
+        <board :segments="3"
+                   :users="users"
+                   :board="board"></board>
         <div class="game-board">
-        <board :users="users"
-               :board="board"></board>
+
         </div>
         <div class="game-selector">
             <my-game   :id = game.id

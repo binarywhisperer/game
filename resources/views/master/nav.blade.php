@@ -1,5 +1,6 @@
 <div id="nav">
     @if (Auth::guest())
+        <div class="nav-logged nav-logged-out">
         <form v-if="login" class="form-horizontal" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="field">
@@ -95,12 +96,18 @@
                 </p>
             </div>
         </form>
+        <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide"><img src="img/nav.png"></div>
+        </div>
     @else
-        <a class="btn btn-link" href="{{ url('/logout') }}">
-            Log Out
-        </a>
-        <gamer ></gamer>
+        <div class="nav-logged nav-logged-in">
+            <div class="nav-logged-in-section">
+            </div>
+            <div class="nav-logged-in-section">
+                <gamer :gamer="gamer"></gamer>
+                {{--<a class="btn btn-link" href="/logout">Log Out</a>--}}
+                <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide"><img src="img/nav.png"></div>
+            </div>
+        </div>
     @endif
-    <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide"><img src="img/nav.png"></div>
 </div>
-<div onclick="document.getElementById('nav').className = 'animated bounceInDown'" class="navShow"><img src="img/nav.png"></div>
+<div onclick="document.getElementById('nav').style.display='flex';document.getElementById('nav').className = 'animated bounceInDown'" class="navShow"><img src="img/nav.png"></div>

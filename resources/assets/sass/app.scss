@@ -1,85 +1,31 @@
-@import "variables";
+@import "variables", "nav";
 
 html, body {
   height: 100vh;
   margin:0;
 }
-
-#nav{
-  background: linear-gradient($background-gradient);
-  height: 80%;
-  width: 100%;
-  position: fixed;
-  display:flex;
+.the-grid-line{
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 1s linear forwards;
 }
-
-.navHide{
-  color:#fff;
-  margin: 0 auto;
-  align-self: flex-end;
-  display: flex;
-
-  img{
-    transform: scaleY(-1);
+.the-grid-line:nth-child(odd){
+  animation-delay:.25s;
+}
+@keyframes dash {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
-.navShow{
-  color: #fff;
-  width: 200px;
-  text-align: center;
-  margin: 0 auto;
-}
+
 .game-container{
 
 }
-.gamers{
-  background: #fff;
-  color:#333;
-  display: flex;
-  align-self: flex-start;
-}
-.game-board{
-  margin: 0 auto;
-  width: 600px;
-}
-.board{
-  display: grid;
-  width:600px;
-  background: #333;
-}
-.gamers{
-  display: inline-grid;
-  grid-column: 1/span 3;
-}
-.gamer{
-  width: 270px;
-  border-bottom: 1px solid rgba(255, 255, 255, 1);
-}
-.gamer-vs{
-  width: 60px;
-  border: 2px solid rgba(255, 255, 255, 1);
-}
-.gamer, .gamer-vs{
-    grid-row: 1/span 1;
-    font-size: 24px;
-    display: grid;
-    text-align: center;
-}
-.row{
-  display:inline-grid;
-  grid-column: 1/span 3;
-  color:#fff;
-  text-shadow:0 1px 1px rgba(0,0,0,1);
-}
-.location{
-  grid-row: 1/span 1;
-  width: 200px;
-  height: 200px;
-  font-size: 100px;
-  justify-content: center;
-  align-items: center;
-  display: grid;
-}
+
+
 .row:nth-of-type(2n) .location:nth-of-type(2n) {
   background-color:#ddd;
 }
