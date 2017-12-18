@@ -16,14 +16,13 @@ window.GameEvent = new class{
 Vue.component('board', require('./components/tictactoe/Board.vue'));
 Vue.component('join-game', require('./components/tictactoe/JoinGame.vue'));
 Vue.component('my-game', require('./components/tictactoe/MyGame.vue'));
+Vue.component('general-chat', require('./components/master/GeneralChat.vue'));
 
 
 const game = new Vue({
     el: '#game',
     data:{
         board: board,
-        myGames: myGames,
-        availableGames: availableGames,
         users: users,
         gamer: gamer,
     },

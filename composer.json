@@ -12,7 +12,8 @@
         "laravel/framework": "5.5.*",
         "laravel/homestead": "^6.5",
         "laravel/passport": "^4.0",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "predis/predis": "^1.1"
     },
     "repositories": [
         {

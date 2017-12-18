@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTicTacToesTable extends Migration
+class CreateInstancesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateTicTacToesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tic_tac_toes', function (Blueprint $table) {
+        Schema::create('instances', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('board');
+            $table->integer('schematic_id')->unsigned();
+            $table->foreign('schematic_id')->references('id')->on('schematics');
+            $table->enum('status', ['Starting','In Progress','Complete']);
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -28,6 +29,6 @@ class CreateTicTacToesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tic_tac_toes');
+        Schema::dropIfExists('instances');
     }
 }

@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
+use App\Events\MessageSent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +23,17 @@ Route::get('/logout',function(){
 
 Auth::routes();
 
-Route::get('/', function(){ return view('home');})->name('home');
-Route::get('/test', 'HomeController@index')->name('home');
+
+Route::get('/realtime', function(){
+    return view('realtime');
+});
+
+Route::post('/messenger', 'MessengerController@send');
+
+
+Route::get('/', 'HomeController@home')->name('home');
+
+Route::post('/instance', 'InstanceController@join');
 
 Route::get('/tictactoe','TicTacToeController@index');
 Route::get('/tictactoe/{tictactoe}', 'TicTacToeController@show');

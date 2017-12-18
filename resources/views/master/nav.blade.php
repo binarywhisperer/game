@@ -104,6 +104,7 @@
             </div>
             <div class="nav-logged-in-section">
                 <gamer :gamer="gamer"></gamer>
+                <schematics :schematics="schematics"></schematics>
                 {{--<a class="btn btn-link" href="/logout">Log Out</a>--}}
                 <div onclick="document.getElementById('nav').className = 'animated bounceOutUp'" class="navHide"><img src="img/nav.png"></div>
             </div>

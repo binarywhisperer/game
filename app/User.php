@@ -27,11 +27,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    function games(){
-        return $this->tictactoes();
-    }
 
-    function tictactoes(){
-        return $this->belongsToMany('\App\TicTacToe','tic_tac_toe_user');
+    function instances(){
+        return $this->belongsToMany('\App\Instance','instance_user');
     }
 }

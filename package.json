@@ -20,6 +20,8 @@
     },
     "dependencies": {
         "animate.css": "^3.5.2",
-        "bulma": "^0.6.1"
+        "bulma": "^0.6.1",
+        "ioredis": "^3.2.2",
+        "socket.io": "^2.0.4"
     }
 }
