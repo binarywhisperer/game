@@ -8,6 +8,7 @@
         "php": ">=7.0.0",
         "clue/graph": "0.9.*",
         "fideloper/proxy": "~3.3",
+        "fzaninotto/faker": "^1.7",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/homestead": "^6.5",
@@ -23,7 +24,6 @@
     ],
     "require-dev": {
         "filp/whoops": "~2.0",
-        "fzaninotto/faker": "~1.4",
         "laracasts/generators": "^1.1",
         "mockery/mockery": "~1.0",
         "phpunit/phpunit": "~6.0"

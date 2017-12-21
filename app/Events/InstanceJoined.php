@@ -17,7 +17,7 @@ class InstanceJoined implements ShouldBroadcast
 
     public $instance;
     public $joiner;
-
+    private $users;
     /**
      * Create a new event instance.
      *
@@ -27,6 +27,7 @@ class InstanceJoined implements ShouldBroadcast
     {
         $this->instance = $instance->id;
         $this->joiner = $joiner->name;
+        $this->users = $instance->users;
     }
 
     /**
@@ -36,11 +37,10 @@ class InstanceJoined implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['1','2'];
-        /*$channels = [];
-        foreach($this->instance->users() as $user){
+        $channels = [];
+        foreach($this->users as $user){
             $channels[] = $user->id;
         }
-        return $channels;*/
+        return $channels;
     }
 }

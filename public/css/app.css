@@ -86,6 +86,12 @@ body {
   margin: 0;
 }
 
+.game-description {
+  width: 50%;
+  margin: 5px auto;
+  min-width: 500px;
+}
+
 .the-grid-line {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
@@ -96,6 +102,65 @@ body {
 .the-grid-line:nth-child(odd) {
   -webkit-animation-delay: .25s;
           animation-delay: .25s;
+}
+
+.instance-selects {
+  overflow-x: hidden;
+  background: -webkit-gradient(linear, left bottom, left top, from(#4ac29a), to(#bdfff3));
+  background: linear-gradient(0deg, #4ac29a, #bdfff3);
+}
+
+.instance-select {
+  margin: 2px 0;
+  cursor: pointer;
+}
+
+.instance-select:hover {
+  background: #1a1a1a;
+}
+
+.instance-label {
+  margin: 5px;
+  border-radius: 4px;
+  height: 54px;
+  line-height: 50px;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  background: #1a1a1a;
+}
+
+.instance-label .label-type {
+  background: -webkit-gradient(linear, left bottom, left top, from(#000), to(#333));
+  background: linear-gradient(0deg, #000, #333);
+  width: 50px;
+  font-size: 36px;
+  border: 2px solid #000;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.instance-label .label-data {
+  border: 5px solid #000;
+  border-left: none;
+  line-height: 44px;
+  float: right;
+  padding: 0 10px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.instance-label .label-last {
+  line-height: 25px;
+  font-size: 16px;
+  border: 2px solid #000;
+}
+
+.instance-label,
+.instance-label div {
+  display: inline-block;
 }
 
 @-webkit-keyframes dash {

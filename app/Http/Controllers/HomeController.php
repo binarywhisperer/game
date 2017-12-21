@@ -26,13 +26,23 @@ class HomeController extends Controller
 
     function home(){
         $user = Auth::user();
+        if($user){
+            $instances = $user->selects();
+            JavaScript::put([
+                'board' => $this->board,
+                'instances' => $instances,
+                'users' => [$user,['name'=> "A.I."]],
+                'gamer' => $user,
+                'schematics' => Schematic::all()
+            ]);
+        }else{
 
-        JavaScript::put([
-            'board' => $this->board,
-            'users' => [$user,['name'=> "A.I."]],
-            'gamer' => $user,
-            'schematics' => Schematic::all()
-        ]);
+        }
+        return view('tictactoe');
+    }
+
+    function login(){
+
         return view('tictactoe');
     }
 }

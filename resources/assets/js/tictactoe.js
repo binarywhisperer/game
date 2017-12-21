@@ -14,9 +14,10 @@ window.GameEvent = new class{
 };
 
 Vue.component('board', require('./components/tictactoe/Board.vue'));
-Vue.component('join-game', require('./components/tictactoe/JoinGame.vue'));
-Vue.component('my-game', require('./components/tictactoe/MyGame.vue'));
+Vue.component('description', require('./components/tictactoe/Description.vue'));
+Vue.component('instance-selects', require('./components/tictactoe/Instance.vue'));
 Vue.component('general-chat', require('./components/master/GeneralChat.vue'));
+Vue.component('svg-arrows', require('./components/master/SVGBackground.vue'));
 
 
 const game = new Vue({
@@ -24,6 +25,7 @@ const game = new Vue({
     data:{
         board: board,
         users: users,
+        instances: instances,
         gamer: gamer,
     },
     methods: {

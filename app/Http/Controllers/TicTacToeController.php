@@ -29,12 +29,12 @@ class TicTacToeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $myGames = $user->tictactoes()->get();
+        $instances = $user->instances()->get();
         $availableGames = TicTacToe::withCount('users')->having('users_count','<',2)->get();
 
         JavaScript::put([
             'board' => $this->board,
-            'myGames' => $myGames,
+            'instances' => $instances,
             'availableGames' => $availableGames,
             'users' => [$user,['name'=> "A.I."]],
             'gamer' => $user,

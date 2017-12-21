@@ -33,6 +33,7 @@ Route::post('/messenger', 'MessengerController@send');
 
 Route::get('/', 'HomeController@home')->name('home');
 
+
 Route::post('/instance', 'InstanceController@join');
 
 Route::get('/tictactoe','TicTacToeController@index');

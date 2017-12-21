@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -24,11 +24,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token','email','created_at','updated_at',
     ];
-
 
     function instances(){
         return $this->belongsToMany('\App\Instance','instance_user');
+    }
+
+    function selects(){
+        return $this->instances->map(function($instance){
+            $data['id'] = $instance->id;
+            $data['updated_at'] =  $instance->updated_at;
+            $data['schematic'] = $instance->schematic->id;
+            $data['edges'] = $instance->edges()->first()->edges;
+            $data['users'] = $instance->users;
+            return $data;
+        });
     }
 }

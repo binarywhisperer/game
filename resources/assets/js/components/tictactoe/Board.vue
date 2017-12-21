@@ -23,6 +23,13 @@
         methods:{
             rectClicked(id){
                 GameEvent.fire('locationSelected', id);
+            },
+            setSize(){
+                var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
+                this.size = (x < y ? x : y) - 100;
+                this.offset = (x - this.size)/2;
+                this.grid = this.size / this.segments;
+                document.getElementsByClassName('the-grid')[0].style.margin = "0 " + this.offset + 'px';
             }
         },
         computed:{
@@ -40,11 +47,12 @@
         mounted() {
             console.log('SVG Board mounted.');
             console.log(board.edges);
-            var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName('body')[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
-            this.size = (x < y ? x : y) - 100;
-            this.offset = (x - this.size)/2;
-            this.grid = this.size / this.segments;
-            document.getElementsByClassName('the-grid')[0].style.margin = "0 " + this.offset + 'px';
+            this.setSize();
+
+            window.addEventListener('resize',  this.setSize);
+        },
+        beforeDestroy(){
+            window.removeEventListener('resize', this.setSize);
         }
     }
 </script>

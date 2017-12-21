@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Edges;
 use App\Instance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -101,6 +102,11 @@ class InstanceController extends Controller
             $newLobby->status = 'Starting';
             $newLobby->save();
             $newLobby->users()->attach($user->id);
+
+            $newEdges = new Edges();
+            $newEdges->instance_id = $newLobby->id;
+            $newEdges->edges = json_encode([]);
+            $newEdges->save();
         }
     }
 }

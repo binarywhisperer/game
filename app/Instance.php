@@ -15,6 +15,17 @@ class Instance extends Model
     function users(){
         return $this->belongsToMany('\App\User','instance_user');
     }
+
+    function vertices(){
+        return $this->hasMany('\App\Vertices','instance_id');
+    }
+
+    function edges(){
+        return $this->hasMany('\App\Edges','instance_id');
+    }
+
+
+
     function hasUser($id){
         foreach($this->users() as $user){
             if($user->id === $id){
@@ -28,7 +39,6 @@ class Instance extends Model
         if(!$this->hasUser($addUser->id)){
             $this->users()->attach($addUser->id);
             event(new InstanceJoined($this, $addUser));
-            //event(new MessageSent('So and So joined a game!'));
             return true;
         }
         return false;
