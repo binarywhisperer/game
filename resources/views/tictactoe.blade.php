@@ -7,6 +7,7 @@
                    :board="board"></board>
         <div class="game-description">
             <div class="instance-selects">
+                <h1>Tic Tac Toe</h1>
                 <instance-selects
                     :instance="instance"
                     :gamer="gamer"

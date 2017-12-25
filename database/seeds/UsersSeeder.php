@@ -13,7 +13,7 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        $userCount = 2;
+        $userCount = 3;
         $faker = Faker::create();
         for($i = 0; $i < $userCount; $i++){
             $user = new User();

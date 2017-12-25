@@ -19,7 +19,7 @@ class InstancesSeeder extends Seeder
             $tictactoe->status = 'In Progress';
             $tictactoe->save();
             $tictactoe->users()->attach(1);
-            $tictactoe->users()->attach(2);
+            $tictactoe->users()->attach(2 + ($i%2));
 
             $edges = new Edges();
             $edges->instance_id = $tictactoe->id;

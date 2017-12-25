@@ -1,8 +1,8 @@
 <template>
 <div class="instance-select">
-            <div class="instance-label"><div class="label-type">{{playerIcon(gamer.id)}}</div><div class="label-data" :style="{background:gamer.primaryColor,borderColor:gamer.secondaryColor}">{{gamer.name}}</div></div>
+            <div class="instance-label"><div class="label-type">{{playerIcon(gamer.id)}}</div><div class="label-data label-gamer" :style="{background:gamer.primaryColor,borderColor:gamer.secondaryColor}">{{gamer.name}}</div></div>
             <div class="instance-label" :opponent="opponent" v-for="opponent in opponents" :key="opponent.id">
-                <div class="label-type">{{playerIcon(opponent.id)}}</div><div class="label-data" :style="{background:opponent.primaryColor,borderColor:opponent.secondaryColor}">{{opponent.name}}</div>
+                <div class="label-type">{{playerIcon(opponent.id)}}</div><div class="label-data label-gamer" :style="{background:opponent.primaryColor,borderColor:opponent.secondaryColor}">{{opponent.name}}</div>
             </div>
             <div class="instance-label"><div class="label-type"><i class="fa fa-clock-o"></i></div><div class="label-data label-last">{{last_at.format('MMM Do')}}<br>{{last_at.format('h:mm:ssA')}}</div></div>
             <div class="instance-label"><div class="label-type"><i class="fa fa-refresh"></i></div><div class="label-data">{{turn}}</div></div>
