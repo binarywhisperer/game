@@ -1,5 +1,5 @@
 <template>
-<div class="instance-select">
+<div class="instance-select" @click="selectInstance">
             <div class="instance-label"><div class="label-type">{{playerIcon(gamer.id)}}</div><div class="label-data label-gamer" :style="{background:gamer.primaryColor,borderColor:gamer.secondaryColor}">{{gamer.name}}</div></div>
             <div class="instance-label" :opponent="opponent" v-for="opponent in opponents" :key="opponent.id">
                 <div class="label-type">{{playerIcon(opponent.id)}}</div><div class="label-data label-gamer" :style="{background:opponent.primaryColor,borderColor:opponent.secondaryColor}">{{opponent.name}}</div>
@@ -15,7 +15,7 @@
         props:['instance','gamer'],
         data: function(){
                 return {
-                    turn: _.size(this.instance.edges.length) + 1,
+                    turn: _.size(JSON.parse(this.instance.edges)) + 1,
                     last_at:moment(this.instance.updated_at.date)
                 }
             },
@@ -25,6 +25,9 @@
                     return 'X';
                 }
                 return 'O';
+            },
+            selectInstance(){
+                GameEvent.fire('instanceSelected', this.instance);
             }
         },
         computed:{
@@ -36,7 +39,6 @@
             }
         },
         mounted() {
-            console.log(this.last_at.format('MMM Do'));
         }
     }
 </script>

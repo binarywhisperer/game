@@ -13,7 +13,7 @@ class Instance extends Model
     }
 
     function users(){
-        return $this->belongsToMany('\App\User','instance_user');
+        return $this->belongsToMany('\App\User','instance_user')->select(['users.id','users.name','users.primaryColor','users.secondaryColor']);
     }
 
     function vertices(){
@@ -24,7 +24,9 @@ class Instance extends Model
         return $this->hasMany('\App\Edges','instance_id');
     }
 
+    function board(){
 
+    }
 
     function hasUser($id){
         foreach($this->users() as $user){

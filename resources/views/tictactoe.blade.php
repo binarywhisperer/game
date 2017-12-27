@@ -3,8 +3,8 @@
 @section('content')
     <div class="game-container" id="game">
         <board :segments="3"
-                   :users="users"
-                   :board="board"></board>
+               :gamer="gamer"
+               :instance="currentInstance"></board>
         <div class="game-description">
             <div class="instance-selects">
                 <h1>Tic Tac Toe</h1>

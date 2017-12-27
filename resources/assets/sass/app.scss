@@ -13,14 +13,14 @@ html, body {
 .the-grid-line{
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: dash 1s linear forwards;
+  animation: dash .75s ease-in forwards;
+  animation-delay:.5s;
 }
 .the-grid-line:nth-child(odd){
-  animation-delay:.25s;
+  animation-delay:.75s;
 }
 .instance-selects{
 overflow-x:auto;
-  background:linear-gradient(0deg, #4ac29a,#bdfff3);
 
   h1{
     margin-left:5px;
@@ -33,6 +33,7 @@ overflow-x:auto;
   margin: 2px 0;
   cursor:pointer;
   width:1200px;
+  border-radius:4px;
 }
 .instance-select:hover{
    background:#1a1a1a;
@@ -68,6 +69,7 @@ overflow-x:auto;
   }
   .label-gamer{
     border: 5px solid #000;
+    width: 225px;
     border-left:none;
     line-height: 44px;
     box-shadow: -1px 0 1px 2px rgba(0,0,0,.5) inset;

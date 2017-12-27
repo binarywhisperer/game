@@ -1,5 +1,4 @@
-window._ = require('lodash');
-window.Vue = require('vue');
+
 
 window.GameEvent = new class{
     constructor(){
@@ -23,8 +22,7 @@ Vue.component('svg-arrows', require('./components/master/SVGBackground.vue'));
 const game = new Vue({
     el: '#game',
     data:{
-        board: board,
-        users: users,
+        currentInstance: {"users":[{"id":"gamer"},{"id":0,"primaryColor":'#870000',"secondaryColor":'#190A05','name':'Local A.I.'}],"edges":[]},
         instances: instances,
         gamer: gamer,
     },
@@ -37,20 +35,20 @@ const game = new Vue({
         hasPlayerEdge(vert){
             let edge = this.hasEdge(0,vert);
             if(edge != false){
-                return this.board.vertices.players[edge[0]];
+                return this.currentInstance.vertices.players[edge[0]];
             }
             edge = this.hasEdge(1,vert);
             if(edge != false){
-                return this.board.vertices.players[edge[0]]
+                return this.currentInstance.vertices.players[edge[0]]
             }
             return '';
         },
         addEdge(vert1, vert2){
-            this.board.edges.unshift([vert1,vert2]);
+            this.currentInstance.edges.unshift([vert1,vert2]);
         },
         hasEdge(vert1, vert2){
             let result = false;
-            let edges = this.board.edges;
+            let edges = this.currentInstance.edges;
             _.forEach(edges, function(edge){
                 if((edge[0] == vert1 && edge[1] == vert2) || (edge[0] == vert2 && edge[1] == vert1)){
                     result = edge;
@@ -60,14 +58,23 @@ const game = new Vue({
             return result;
         },
         locationSelected(location){
-            this.addEdge(this.board.edges.length % 2,location);
-            console.log(this.board.edges);
+            this.addEdge(this.currentInstance.edges.length % 2,location);
+        },
+        instanceSelected(instance){
+            this.currentInstance.edges = JSON.parse(instance.edges);
+            this.currentInstance.users = instance.users;
+            window.scrollTo(0,0);
+            _.forEach(document.getElementsByClassName('board-load'), function(animation) {
+                animation.beginElement();
+            });
         }
     },
     created(){
         GameEvent.listen('locationSelected', (location) => this.locationSelected(location));
+        GameEvent.listen('instanceSelected', (instance) => this.instanceSelected(instance));
     },
     mounted(){
-        console.log(this.board);
+        console.log("Tic Tac Toe Board Loaded:");
+        console.log(this.currentInstance);
     }
 });

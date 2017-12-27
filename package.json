@@ -16,14 +16,15 @@
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
+        "animate.css": "^3.5.2",
+        "bulma": "^0.6.1",
+        "moment": "^2.20.1",
+        "moment-timezone": "^0.5.14",
         "vue": "^2.1.10"
     },
     "dependencies": {
-        "animate.css": "^3.5.2",
-        "bulma": "^0.6.1",
+        "forever": "^0.15.3",
         "ioredis": "^3.2.2",
-        "moment": "^2.20.1",
-        "moment-timezone": "^0.5.14",
         "socket.io": "^2.0.4"
     }
 }

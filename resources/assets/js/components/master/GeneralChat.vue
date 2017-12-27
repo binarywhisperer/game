@@ -31,15 +31,13 @@
                 },
                 sendMessage(message){
                     axios.post('/messenger', {message: message.target.message.value}).then(response => {
-                        console.log(response);
+                        message.target.message.value = "";
                      });
                 }
         },
         mounted() {
             let vm = this;
             socket.on('general:App\\Events\\MessageSent', function(data){
-                console.log(data);
-                window.test = data;
                 vm.messageSent(data.messageBody);
             });
         }

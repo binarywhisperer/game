@@ -20,7 +20,7 @@ class HomeController extends Controller
                 2,3,4,5,6,7,8,9,10
             ]
         ],
-        'edges' => []
+        'edges' => [[0,2]]
     ];
 
 
@@ -29,9 +29,7 @@ class HomeController extends Controller
         if($user){
             $instances = $user->selects();
             JavaScript::put([
-                'board' => $this->board,
                 'instances' => $instances,
-                'users' => [$user,['name'=> "A.I."]],
                 'gamer' => $user,
                 'schematics' => Schematic::all()
             ]);

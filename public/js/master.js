@@ -46486,8 +46486,6 @@ webpackContext.id = 174;
 /* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var socket = io('http://192.168.10.10:3000');
-
 Vue.component('gamer', __webpack_require__(176));
 Vue.component('schematics', __webpack_require__(179));
 
@@ -46497,12 +46495,10 @@ var nav = new Vue({
         login: true,
         gamer: gamer,
         schematics: schematics
-
     },
     methods: {},
     created: function created() {},
     mounted: function mounted() {
-
         socket.on(gamer.id + ':App\\Events\\InstanceJoined', function (data) {
             alert("New Joiner: " + data.joiner);
         });
