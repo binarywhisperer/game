@@ -28,9 +28,7 @@ const game = new Vue({
     },
     methods: {
         createGame(){
-            axios.put('tictactoe').then(response => {
-                console.log(response);
-            });
+
         },
         hasPlayerEdge(vert){
             let edge = this.hasEdge(0,vert);

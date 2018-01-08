@@ -24,13 +24,16 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token','email','created_at','updated_at',
+        'password', 'remember_token','created_at','updated_at',
     ];
 
     function instances(){
         return $this->belongsToMany('\App\Instance','instance_user');
     }
 
+    function finding(){
+        return $this->instances()->where([['status','Starting']])->get();
+    }
     function selects(){
         return $this->instances->map(function($instance){
             $data['id'] = $instance->id;

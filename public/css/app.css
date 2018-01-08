@@ -42,8 +42,52 @@
   margin: 0 auto;
 }
 
+.schematic {
+  margin-top: 100px;
+}
+
+.findingGame p {
+  text-align: center;
+  color: #fff;
+}
+
+.findingGame .loading-gif {
+  width: 100px;
+  margin: 0 auto;
+}
+
 .gamer-level {
   width: 50%;
+}
+
+.editingForm {
+  background: #333;
+  padding: 5px;
+}
+
+.editingForm i {
+  color: #fff;
+}
+
+.colorInput {
+  width: 49%;
+  display: inline-block;
+}
+
+.colorInput input {
+  width: 50%;
+  margin: 0 25%;
+}
+
+.colorInput div {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.stretch {
+  width: 100%;
 }
 
 .gamer-label {
@@ -51,31 +95,53 @@
   height: 60px;
 }
 
+.gamer-label input[type=text] {
+  border: none;
+  background: none;
+}
+
+.gamer-label .hover-only {
+  display: none;
+}
+
+.gamer-label:hover .hover-only {
+  display: block;
+}
+
+.gamer-label:hover .hover-hide {
+  display: none;
+}
+
+.gamer-label input[type=text],
 .gamer-label i,
 .gamer-label div {
   color: #fff;
   text-shadow: 0 0 3px #0a0a0a;
   height: 60px;
-  border: 5px solid;
   float: left;
   text-align: center;
   line-height: 45px;
   font-size: 28px;
+  font-weight: 700;
 }
 
 .gamer-label i {
-  border-right: none;
-  background: #333;
-  width: 10%;
-  border-color: #333;
+  width: 16%;
+  border: 2px solid #000;
+  background: -webkit-gradient(linear, left bottom, left top, from(#000), to(#333));
+  background: linear-gradient(0deg, #000, #333);
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  line-height: 58px;
 }
 
 .gamer-label div {
+  border: 5px solid;
   background: #eee;
   border-left: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  width: 89%;
+  width: 84%;
   -webkit-box-shadow: -1px 0 1px 1px rgba(0, 0, 0, 0.5) inset;
           box-shadow: -1px 0 1px 1px rgba(0, 0, 0, 0.5) inset;
 }
@@ -90,6 +156,44 @@ body {
   width: 50%;
   margin: 5px auto;
   min-width: 500px;
+}
+
+#general-chat {
+  background: #1a1a1a;
+  border-radius: 6px;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+  padding: 3px;
+  margin: 20px 0;
+  color: #eee;
+}
+
+#general-chat h2 {
+  color: #ccc;
+  font-weight: 700;
+  text-align: center;
+}
+
+#general-chat ul li:first-child {
+  color: #999;
+  text-align: center;
+  margin: 0;
+}
+
+#general-chat ul li {
+  margin: 4px 0;
+}
+
+#general-chat ul div {
+  border: 2px solid;
+  display: inline-block;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 0 5px;
+  text-shadow: 0 0 2px #000;
+  -webkit-box-shadow: 0 0 1px 1px #000 inset;
+          box-shadow: 0 0 1px 1px #000 inset;
+  margin: 0 8px 0 0;
 }
 
 .the-grid-line {

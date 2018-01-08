@@ -60,21 +60,21 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 135);
+/******/ 	return __webpack_require__(__webpack_require__.s = 131);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 135:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(136);
-module.exports = __webpack_require__(152);
+__webpack_require__(132);
+module.exports = __webpack_require__(148);
 
 
 /***/ }),
 
-/***/ 136:
+/***/ 132:
 /***/ (function(module, exports, __webpack_require__) {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -105,11 +105,11 @@ window.GameEvent = new (function () {
     return _class;
 }())();
 
-Vue.component('board', __webpack_require__(137));
-Vue.component('description', __webpack_require__(140));
-Vue.component('instance-selects', __webpack_require__(143));
-Vue.component('general-chat', __webpack_require__(146));
-Vue.component('svg-arrows', __webpack_require__(149));
+Vue.component('board', __webpack_require__(133));
+Vue.component('description', __webpack_require__(136));
+Vue.component('instance-selects', __webpack_require__(139));
+Vue.component('general-chat', __webpack_require__(142));
+Vue.component('svg-arrows', __webpack_require__(145));
 
 var game = new Vue({
     el: '#game',
@@ -119,11 +119,7 @@ var game = new Vue({
         gamer: gamer
     },
     methods: {
-        createGame: function createGame() {
-            axios.put('tictactoe').then(function (response) {
-                console.log(response);
-            });
-        },
+        createGame: function createGame() {},
         hasPlayerEdge: function hasPlayerEdge(vert) {
             var edge = this.hasEdge(0, vert);
             if (edge != false) {
@@ -179,15 +175,15 @@ var game = new Vue({
 
 /***/ }),
 
-/***/ 137:
+/***/ 133:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(138)
+var __vue_script__ = __webpack_require__(134)
 /* template */
-var __vue_template__ = __webpack_require__(139)
+var __vue_template__ = __webpack_require__(135)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -228,7 +224,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 138:
+/***/ 134:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -362,7 +358,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 139:
+/***/ 135:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -660,15 +656,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 140:
+/***/ 136:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(141)
+var __vue_script__ = __webpack_require__(137)
 /* template */
-var __vue_template__ = __webpack_require__(142)
+var __vue_template__ = __webpack_require__(138)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -709,7 +705,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 141:
+/***/ 137:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -734,7 +730,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 142:
+/***/ 138:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -770,15 +766,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 143:
+/***/ 139:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(144)
+var __vue_script__ = __webpack_require__(140)
 /* template */
-var __vue_template__ = __webpack_require__(145)
+var __vue_template__ = __webpack_require__(141)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -819,7 +815,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 144:
+/***/ 140:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -869,7 +865,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 145:
+/***/ 141:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -977,15 +973,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 146:
+/***/ 142:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(147)
+var __vue_script__ = __webpack_require__(143)
 /* template */
-var __vue_template__ = __webpack_require__(148)
+var __vue_template__ = __webpack_require__(144)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1026,11 +1022,13 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 147:
+/***/ 143:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -1055,7 +1053,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            messages: ['Start of messages']
+            time: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
+            messages: []
         };
     },
     methods: {
@@ -1071,14 +1070,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var vm = this;
         socket.on('general:App\\Events\\MessageSent', function (data) {
-            vm.messageSent(data.messageBody);
+            vm.messageSent(data.message);
         });
     }
 });
 
 /***/ }),
 
-/***/ 148:
+/***/ 144:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1086,11 +1085,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { attrs: { id: "general-chat" } }, [
+    _c("h2", [_vm._v("General Chat")]),
+    _vm._v(" "),
     _c(
       "ul",
-      _vm._l(_vm.messages, function(message) {
-        return _c("li", [_vm._v(_vm._s(message))])
-      })
+      [
+        _c("li", [_vm._v(_vm._s(_vm.time))]),
+        _vm._v(" "),
+        _vm._l(_vm.messages, function(message) {
+          return _c("li", [
+            _c(
+              "div",
+              {
+                style: {
+                  background: message.primary,
+                  borderColor: message.secondary
+                }
+              },
+              [_vm._v(_vm._s(message.name))]
+            ),
+            _vm._v(_vm._s(message.message))
+          ])
+        })
+      ],
+      2
     ),
     _vm._v(" "),
     _c(
@@ -1119,6 +1137,7 @@ var staticRenderFns = [
           staticClass: "input",
           attrs: {
             type: "text",
+            autocomplete: "off",
             name: "message",
             placeholder: "Be nice or GTFO"
           }
@@ -1126,9 +1145,11 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "control" }, [
-        _c("button", { staticClass: "button", attrs: { type: "submit" } }, [
-          _vm._v("\n                    SEND\n                ")
-        ])
+        _c(
+          "button",
+          { staticClass: "button is-primary", attrs: { type: "submit" } },
+          [_vm._v("\n                    SEND\n                ")]
+        )
       ])
     ])
   }
@@ -1144,15 +1165,15 @@ if (false) {
 
 /***/ }),
 
-/***/ 149:
+/***/ 145:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(150)
+var __vue_script__ = __webpack_require__(146)
 /* template */
-var __vue_template__ = __webpack_require__(151)
+var __vue_template__ = __webpack_require__(147)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -1193,7 +1214,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 150:
+/***/ 146:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1267,7 +1288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 151:
+/***/ 147:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -1346,7 +1367,7 @@ if (false) {
 
 /***/ }),
 
-/***/ 152:
+/***/ 148:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

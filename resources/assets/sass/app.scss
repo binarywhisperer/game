@@ -10,6 +10,37 @@ html, body {
   min-width:500px;
 }
 
+#general-chat{
+  background: #1a1a1a;
+  border-radius: 6px;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,.4);
+  padding: 3px;
+  margin: 20px 0;
+  color: #eee;
+  h2{
+    color: #ccc;
+    font-weight: 700;
+    text-align: center;
+  }
+  ul li:first-child{
+    color:#999;
+    text-align:center;
+    margin:0;
+  }
+  ul li{
+    margin:4px 0;
+  }
+  ul div{
+    border:2px solid;
+    display:inline-block;
+    font-weight: 700;
+    border-radius: 4px;
+    padding: 0 5px;
+    text-shadow: 0 0 2px #000;
+    box-shadow: 0 0 1px 1px #000 inset;
+    margin: 0 8px 0 0;
+  }
+}
 .the-grid-line{
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;

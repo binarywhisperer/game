@@ -7,7 +7,7 @@ use App\Events\MessageSent;
 
 class Messenger extends Model
 {
-    function message($message){
-        event(new MessageSent($message));
+    function message($message, $user){
+        event(new MessageSent($message, $user));
     }
 }

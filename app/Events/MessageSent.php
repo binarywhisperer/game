@@ -15,15 +15,20 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $messageBody;
+    public $message;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($messageBody)
+    public function __construct($message, $user)
     {
-        $this->messageBody = $messageBody;
+        $this->message = [
+            'message' => $message,
+            'name' => $user->name,
+            'primary' => $user->primaryColor,
+            'secondary' => $user->secondaryColor
+        ];
     }
 
     /**

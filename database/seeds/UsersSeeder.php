@@ -22,7 +22,7 @@ class UsersSeeder extends Seeder
             $user->points = $faker->numberBetween(0,200);
             $user->primaryColor = $faker->hexcolor;
             $user->secondaryColor = $faker->hexcolor;
-            $user->name = $faker->name;
+            $user->name = substr($faker->userName,-13);
             $user->save();
         }
     }

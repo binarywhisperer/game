@@ -1,11 +1,13 @@
 <template>
         <div class="schematic">
             <form @submit.prevent="findGame">
-                <select name="schematic">
-                    <option v-for="schematic in schematics" :value="schematic.id">{{schematic.name}}</option>
-                </select>
-                <button type="submit">Find Game</button>
 
+                <div class="select">
+                    <select name="schematic">
+                        <option v-for="schematic in schematics" :value="schematic.id">{{schematic.name}}</option>
+                    </select>
+                </div>
+                <button type="submit">Find Game</button>
             </form>
         </div>
 </template>

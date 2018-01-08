@@ -13,29 +13,23 @@ use App\Events\MessageSent;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 Route::get('/logout',function(){
     Auth::logout();
     return redirect('/');
 });
-
-
 Auth::routes();
+
+Route::get('/', 'HomeController@home');
+
+
 
 
 Route::get('/realtime', function(){
     return view('realtime');
 });
 
-Route::post('/messenger', 'MessengerController@send');
-
-
-Route::get('/', 'HomeController@home')->name('home');
-
-
 Route::post('/instance', 'InstanceController@join');
-
+Route::post('/messenger', 'MessengerController@send');
 Route::get('/tictactoe','TicTacToeController@index');
 Route::get('/tictactoe/{tictactoe}', 'TicTacToeController@show');
 Route::post('/tictactoe/{tictactoe}', 'TicTacToeController@update');
