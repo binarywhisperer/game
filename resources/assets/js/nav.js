@@ -23,9 +23,9 @@ const nav = new Vue({
     mounted(){
         let vm = this;
         socket.on( gamer.id + ':App\\Events\\InstanceJoined', function(data){
-            alert(data.message);
             vm.findingGame = false;
-            vm.instances.push(data.instance);
+            alert(data.message);
+            location.reload();
         });
         socket.on( gamer.id + ':App\\Events\\InstanceUpdated', function(data){
             console.log("socket InstanceUpdated");

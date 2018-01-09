@@ -1,18 +1,11 @@
 @extends('master.master')
 
 @section('content')
-    <div class="game-container" id="game">
+    <div class="game-container" id="game" onClick="document.getElementById('nav').className = 'animated bounceOutUp'">
         <board :segments="3"
                :gamer="gamer"
                :instance="currentInstance"></board>
         <div class="game-description">
-            <div class="instance-selects">
-                <h1>Tic Tac Toe</h1>
-                <instance-selects
-                    :instance="instance"
-                    :gamer="gamer"
-                    v-for="instance in instances"></instance-selects>
-            </div>
             <general-chat></general-chat>
             <description></description>
         </div>

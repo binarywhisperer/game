@@ -237,7 +237,7 @@ body {
 }
 
 .instance-label {
-  margin: 5px;
+  margin: 2px;
   border-radius: 4px;
   height: 54px;
   line-height: 50px;
@@ -271,7 +271,7 @@ body {
 
 .instance-label .label-gamer {
   border: 5px solid #000;
-  width: 225px;
+  width: 200px;
   border-left: none;
   line-height: 44px;
   -webkit-box-shadow: -1px 0 1px 2px rgba(0, 0, 0, 0.5) inset;

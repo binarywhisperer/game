@@ -69,7 +69,7 @@ class Instance extends Model
                 }elseif($this->hasEdge($user, $possible - 3) && $this->hasEdge($user, $possible) && $this->hasEdge($user, $possible + 3)){
                     //Vertical
                     $winner = $this->users[$user];
-                }elseif(($this->hasEdge($user, 0) && $this->hasEdge($user, 4) && $this->hasEdge($user, 8)) || ($this->hasEdge($user, 2) && $this->hasEdge($user, 4) && $this->hasEdge($user, 6))){
+                }elseif(($this->hasEdge($user, 2) && $this->hasEdge($user, 6) && $this->hasEdge($user, 10)) || ($this->hasEdge($user, 4) && $this->hasEdge($user, 6) && $this->hasEdge($user, 8))){
                     //Diagonal
                     $winner = $this->users[$user];
                 }

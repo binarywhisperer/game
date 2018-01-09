@@ -169,6 +169,7 @@ var game = new Vue({
         },
         instanceWin: function instanceWin(message) {
             alert(message.message);
+            location.reload();
         },
         instanceUpdated: function instanceUpdated(instance) {
             this.currentInstance.edges = JSON.parse(instance.edges);

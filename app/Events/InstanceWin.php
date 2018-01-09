@@ -25,6 +25,8 @@ class InstanceWin  implements ShouldBroadcast
     {
         $this->message = "The winner is " . $winner->name . "!";
         $this->instance = $instance;
+        $instance->status = "Complete";
+        $instance->save();
     }
 
     /**

@@ -80,6 +80,7 @@ const game = new Vue({
         },
         instanceWin(message){
             alert(message.message);
+            location.reload();
         },
         instanceUpdated(instance){
             this.currentInstance.edges =  JSON.parse(instance.edges);
