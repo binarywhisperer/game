@@ -23,21 +23,24 @@ const nav = new Vue({
     mounted(){
         let vm = this;
         socket.on( gamer.id + ':App\\Events\\InstanceJoined', function(data){
-            alert("New Joiner: " + data.joiner);
-            this.findingGame = false;
+            alert(data.message);
+            vm.findingGame = false;
+            vm.instances.push(data.instance);
         });
         socket.on( gamer.id + ':App\\Events\\InstanceUpdated', function(data){
             console.log("socket InstanceUpdated");
+            let instanceId;
             _.each(vm.instances, function(instance, index){
-                console.log(instance.id + "  <>  "  + data.edges.instance_id);
                 if(instance.id == data.edges.instance_id){
-                    instance.edges = data.edges.edges;
+                    instance.edges = JSON.parse(data.edges.edges);
                     vm.updateInstance(index,instance);
+                    instanceId = index;
                 }
             });
-            GameEvent.fire('instanceUpdated', data.edges);
-            console.log("vm.instances");
-            console.log(vm.instances);
+            GameEvent.fire('instanceUpdated', vm.instances[instanceId]);
+        });
+        socket.on( gamer.id + ':App\\Events\\InstanceWin', function(data){
+            GameEvent.fire('instanceWin', data);
         });
     }
 });

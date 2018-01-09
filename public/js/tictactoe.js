@@ -69,7 +69,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(135);
-module.exports = __webpack_require__(148);
+module.exports = __webpack_require__(145);
 
 
 /***/ }),
@@ -167,10 +167,11 @@ var game = new Vue({
                 axios.post('api/instance/' + this.currentInstance.id, { action: 'add', edge: [this.gamer.id, location] }).then(function (response) {});
             }
         },
+        instanceWin: function instanceWin(message) {
+            alert(message.message);
+        },
         instanceUpdated: function instanceUpdated(instance) {
-            console.log('intntnttn');
-            console.log(instance);
-            this.currentInstance.edges = instance.edges;
+            this.currentInstance.edges = JSON.parse(instance.edges);
         },
         instanceSelected: function instanceSelected(instance) {
             this.currentInstance.id = instance.id;
@@ -196,6 +197,9 @@ var game = new Vue({
         });
         GameEvent.listen('instanceUpdated', function (instance) {
             return _this.instanceUpdated(instance);
+        });
+        GameEvent.listen('instanceWin', function (message) {
+            return _this.instanceWin(message);
         });
     },
     mounted: function mounted() {}
@@ -228,7 +232,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\tictactoe\\Board.vue"
+Component.options.__file = "resources/assets/js/components/tictactoe/Board.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -238,9 +242,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-0bb45336", Component.options)
+    hotAPI.createRecord("data-v-2e220932", Component.options)
   } else {
-    hotAPI.reload("data-v-0bb45336", Component.options)
+    hotAPI.reload("data-v-2e220932", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -692,7 +696,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0bb45336", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-2e220932", module.exports)
   }
 }
 
@@ -723,7 +727,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\tictactoe\\Description.vue"
+Component.options.__file = "resources/assets/js/components/tictactoe/Description.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -733,9 +737,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8e8fb18a", Component.options)
+    hotAPI.createRecord("data-v-53a44c48", Component.options)
   } else {
-    hotAPI.reload("data-v-8e8fb18a", Component.options)
+    hotAPI.reload("data-v-53a44c48", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -802,7 +806,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8e8fb18a", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-53a44c48", module.exports)
   }
 }
 
@@ -833,7 +837,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\master\\GeneralChat.vue"
+Component.options.__file = "resources/assets/js/components/master/GeneralChat.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -843,9 +847,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-ee419346", Component.options)
+    hotAPI.createRecord("data-v-60df18ea", Component.options)
   } else {
-    hotAPI.reload("data-v-ee419346", Component.options)
+    hotAPI.reload("data-v-60df18ea", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -994,13 +998,13 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-ee419346", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-60df18ea", module.exports)
   }
 }
 
 /***/ }),
 
-/***/ 148:
+/***/ 145:
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -1142,7 +1146,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\tictactoe\\Instance.vue"
+Component.options.__file = "resources/assets/js/components/tictactoe/Instance.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -1152,9 +1156,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5f3f0134", Component.options)
+    hotAPI.createRecord("data-v-61fc3d79", Component.options)
   } else {
-    hotAPI.reload("data-v-5f3f0134", Component.options)
+    hotAPI.reload("data-v-61fc3d79", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -1318,7 +1322,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5f3f0134", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-61fc3d79", module.exports)
   }
 }
 

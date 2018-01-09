@@ -28,7 +28,7 @@ class User extends Authenticatable
     ];
 
     function instances(){
-        return $this->belongsToMany('\App\Instance','instance_user');
+        return $this->belongsToMany('\App\Instance','instance_user')->where('status','In Progress');
     }
 
     function finding(){

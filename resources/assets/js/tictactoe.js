@@ -78,10 +78,11 @@ const game = new Vue({
                 });
             }
         },
+        instanceWin(message){
+            alert(message.message);
+        },
         instanceUpdated(instance){
-            console.log('intntnttn');
-            console.log(instance);
-            this.currentInstance.edges =  instance.edges;
+            this.currentInstance.edges =  JSON.parse(instance.edges);
         },
         instanceSelected(instance){
             this.currentInstance.id = instance.id;
@@ -100,6 +101,7 @@ const game = new Vue({
         GameEvent.listen('locationSelected', (location) => this.locationSelected(location));
         GameEvent.listen('instanceSelected', (instance) => this.instanceSelected(instance));
         GameEvent.listen('instanceUpdated', (instance) => this.instanceUpdated(instance));
+        GameEvent.listen('instanceWin', (message) => this.instanceWin(message));
     },
     mounted(){
 

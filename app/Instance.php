@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Events\InstanceJoined;
+use App\Events\InstanceWin;
 use App\Events\InstanceUpdated;
 use App\Events\MessageSent;
 use Illuminate\Database\Eloquent\Model;
@@ -30,7 +31,7 @@ class Instance extends Model
     }
 
     function hasUser($id){
-        foreach($this->users() as $user){
+        foreach($this->users as $user){
             if($user->id === $id){
                 return true;
             }
@@ -50,15 +51,33 @@ class Instance extends Model
     function addUser($addUser){
         if(!$this->hasUser($addUser->id)){
             $this->users()->attach($addUser->id);
-            event(new InstanceJoined($this, $addUser));
-            return true;
+                event(new InstanceJoined($this));
+                return true;
         }
         return false;
     }
 
 
     function checkForVictory(){
+        $winner = -1;
+        foreach([0,1] as $user){
+            foreach([3,5,6,7,9] as $possible){
 
+                if($this->hasEdge($user, $possible - 1) && $this->hasEdge($user, $possible) && $this->hasEdge($user, $possible + 1)){
+                    //Horizontal
+                    $winner = $this->users[$user];
+                }elseif($this->hasEdge($user, $possible - 3) && $this->hasEdge($user, $possible) && $this->hasEdge($user, $possible + 3)){
+                    //Vertical
+                    $winner = $this->users[$user];
+                }elseif(($this->hasEdge($user, 0) && $this->hasEdge($user, 4) && $this->hasEdge($user, 8)) || ($this->hasEdge($user, 2) && $this->hasEdge($user, 4) && $this->hasEdge($user, 6))){
+                    //Diagonal
+                    $winner = $this->users[$user];
+                }
+            }
+        }
+        if($winner !== -1){
+            event(new InstanceWin($this, $winner));
+        }
     }
 
 
@@ -97,6 +116,7 @@ class Instance extends Model
             $edges->save();
             event(new InstanceUpdated($this, $edges));
         }
-        $this->checkForVictory();
+        $instance = Instance::find($this->id);
+        $instance->checkForVictory();
     }
 }

@@ -97,9 +97,9 @@
                 this.editing = false;
             },
             findGame(e){
-                this.$root.findingGame = true;
                 axios.post('/instance', {schematic: e.target.schematic.value}).then(response => {
-                }).bind(this);
+                    this.$root.findingGame = true;
+                });
             }
         },
         computed: {
