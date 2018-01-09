@@ -21,6 +21,7 @@
 @include ('master.nav')
 @yield('content')
 @include ('master.footer')
+<script>var socketUrl = "{{ env('APP_URL') }}:3000"; </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="js/master.js"></script>
 @yield('javascript')
