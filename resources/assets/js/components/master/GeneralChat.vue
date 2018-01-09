@@ -30,7 +30,7 @@
             },
         methods:{
              messageSent(message){
-                    this.messages.push(message);
+                    this.messages.unshift(message);
                 },
                 sendMessage(message){
                     axios.post('/messenger', {message: message.target.message.value}).then(response => {

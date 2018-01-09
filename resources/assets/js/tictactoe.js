@@ -16,13 +16,12 @@ Vue.component('board', require('./components/tictactoe/Board.vue'));
 Vue.component('description', require('./components/tictactoe/Description.vue'));
 Vue.component('instance-selects', require('./components/tictactoe/Instance.vue'));
 Vue.component('general-chat', require('./components/master/GeneralChat.vue'));
-Vue.component('svg-arrows', require('./components/master/SVGBackground.vue'));
 
 
 const game = new Vue({
     el: '#game',
     data:{
-        currentInstance: {"users":[{"id":"gamer"},{"id":0,"primaryColor":'#870000',"secondaryColor":'#190A05','name':'Local A.I.'}],"edges":[]},
+        currentInstance: {"id":0, "users":[{"id":"gamer"},{"id":0,"primaryColor":'#870000',"secondaryColor":'#190A05','name':'Local A.I.'}],"edges":[],"edges":[]},
         instances: instances,
         gamer: gamer,
     },
@@ -33,13 +32,13 @@ const game = new Vue({
         hasPlayerEdge(vert){
             let edge = this.hasEdge(0,vert);
             if(edge != false){
-                return this.currentInstance.vertices.players[edge[0]];
+                return true;
             }
             edge = this.hasEdge(1,vert);
             if(edge != false){
-                return this.currentInstance.vertices.players[edge[0]]
+                return true;
             }
-            return '';
+            return false;
         },
         addEdge(vert1, vert2){
             this.currentInstance.edges.unshift([vert1,vert2]);
@@ -56,23 +55,53 @@ const game = new Vue({
             return result;
         },
         locationSelected(location){
-            this.addEdge(this.currentInstance.edges.length % 2,location);
+            console.log('this.currentInstance');
+            console.log(this.currentInstance);
+            if(this.currentInstance.id == 0){
+                if(!this.hasPlayerEdge(location)){
+                    this.addEdge(0, location);
+                    let randomStrat = 2;
+                    if(this.currentInstance.edges.length < 9){
+                        do{
+                            randomStrat = Math.floor(Math.random() * 8) + 2;
+                        }while(this.hasPlayerEdge(randomStrat));
+                        let vm = this;
+                        setTimeout(function(){
+                            vm.addEdge(1, randomStrat);
+                        }, 100);
+
+                    }
+                }
+            }else{
+                axios.post('api/instance/' + this.currentInstance.id, {action: 'add', edge: [this.gamer.id,location] }).then(response => {
+
+                });
+            }
+        },
+        instanceUpdated(instance){
+            console.log('intntnttn');
+            console.log(instance);
+            this.currentInstance.edges =  instance.edges;
         },
         instanceSelected(instance){
+            this.currentInstance.id = instance.id;
             this.currentInstance.edges = JSON.parse(instance.edges);
             this.currentInstance.users = instance.users;
             window.scrollTo(0,0);
-            _.forEach(document.getElementsByClassName('board-load'), function(animation) {
-                animation.beginElement();
-            });
+            document.getElementById('nav').className = 'animated bounceOutUp';
+            setTimeout(function(){
+                _.forEach(document.getElementsByClassName('board-load'), function(animation) {
+                    animation.beginElement();
+                });
+            },400);
         }
     },
     created(){
         GameEvent.listen('locationSelected', (location) => this.locationSelected(location));
         GameEvent.listen('instanceSelected', (instance) => this.instanceSelected(instance));
+        GameEvent.listen('instanceUpdated', (instance) => this.instanceUpdated(instance));
     },
     mounted(){
-        console.log("Tic Tac Toe Board Loaded:");
-        console.log(this.currentInstance);
+
     }
 });

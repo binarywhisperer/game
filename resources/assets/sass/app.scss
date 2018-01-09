@@ -22,6 +22,10 @@ html, body {
     font-weight: 700;
     text-align: center;
   }
+  ul{
+    max-height:300px;
+    overflow-y:auto;
+  }
   ul li:first-child{
     color:#999;
     text-align:center;

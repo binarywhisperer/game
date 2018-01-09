@@ -66,7 +66,8 @@
                     range: _.range(0, (this.segments * this.segments), 1),
                     size: 300,
                     grid: 100,
-                    offset:0
+                    offset:0,
+                    localInstance: this.instance
                 }
             },
         methods:{
@@ -79,22 +80,28 @@
                 this.offset = (x - this.size)/2;
                 this.grid = this.size / this.segments;
                 document.getElementsByClassName('the-grid')[0].style.margin = "0 " + this.offset + 'px';
+            },
+            instanceUpdated(instance){
+                console.log('instanceUpdated');
+                console.log(this.localInstance);
+                this.localInstance.edges = instance.edges;
+                console.log(this.localInstance);
             }
         },
         computed:{
-             playerXName(){ return (this.instance.users[0].id == 'gamer' ? this.gamer.name : this.instance.users[0].name)},
-             playerOName(){ return (this.instance.users[1].id == 'gamer' ? this.gamer.name : this.instance.users[1].name)},
-             playerXPrimary(){ return (this.instance.users[0].id == 'gamer' ? this.gamer.primaryColor : this.instance.users[0].primaryColor)},
-             playerXSecondary(){ return (this.instance.users[0].id == 'gamer' ? this.gamer.secondaryColor : this.instance.users[0].secondaryColor)},
-             playerOPrimary(){ return (this.instance.users[1].id == 'gamer' ? this.gamer.primaryColor : this.instance.users[1].primaryColor)},
-             playerOSecondary(){ return (this.instance.users[1].id == 'gamer' ? this.gamer.secondaryColor : this.instance.users[1].secondaryColor)},
+             playerXName(){ return (this.localInstance.users[0].id == 'gamer' ? this.gamer.name : this.localInstance.users[0].name)},
+             playerOName(){ return (this.localInstance.users[1].id == 'gamer' ? this.gamer.name : this.localInstance.users[1].name)},
+             playerXPrimary(){ return (this.localInstance.users[0].id == 'gamer' ? this.gamer.primaryColor : this.localInstance.users[0].primaryColor)},
+             playerXSecondary(){ return (this.localInstance.users[0].id == 'gamer' ? this.gamer.secondaryColor : this.localInstance.users[0].secondaryColor)},
+             playerOPrimary(){ return (this.localInstance.users[1].id == 'gamer' ? this.gamer.primaryColor : this.localInstance.users[1].primaryColor)},
+             playerOSecondary(){ return (this.localInstance.users[1].id == 'gamer' ? this.gamer.secondaryColor : this.localInstance.users[1].secondaryColor)},
              playerExEdges(){
-                return _.filter(this.instance.edges, function(edge) {
+                return _.filter(this.localInstance.edges, function(edge) {
                     return edge[0] == 0;
                 });
              },
              playerCircleEdges(){
-                return _.filter(this.instance.edges, function(edge) {
+                return _.filter(this.localInstance.edges, function(edge) {
                     return edge[0] == 1;
                 });
              }
@@ -102,6 +109,9 @@
         mounted() {
             this.setSize();
             window.addEventListener('resize',  this.setSize);
+        },
+        created(){
+            GameEvent.listen('instanceUpdated', (instance) => this.instanceUpdated(instance));
         },
         beforeDestroy(){
             window.removeEventListener('resize', this.setSize);

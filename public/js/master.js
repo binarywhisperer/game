@@ -46701,12 +46701,30 @@ var nav = new Vue({
         findingGame: findingGame,
         instances: instances
     },
-    methods: {},
+    methods: {
+        updateInstance: function updateInstance(index, instance) {
+            Vue.set(this.instances, index, instance);
+        }
+    },
     created: function created() {},
     mounted: function mounted() {
+        var vm = this;
         socket.on(gamer.id + ':App\\Events\\InstanceJoined', function (data) {
             alert("New Joiner: " + data.joiner);
             this.findingGame = false;
+        });
+        socket.on(gamer.id + ':App\\Events\\InstanceUpdated', function (data) {
+            console.log("socket InstanceUpdated");
+            _.each(vm.instances, function (instance, index) {
+                console.log(instance.id + "  <>  " + data.edges.instance_id);
+                if (instance.id == data.edges.instance_id) {
+                    instance.edges = data.edges.edges;
+                    vm.updateInstance(index, instance);
+                }
+            });
+            GameEvent.fire('instanceUpdated', data.edges);
+            console.log("vm.instances");
+            console.log(vm.instances);
         });
     }
 });

@@ -79,6 +79,8 @@ module.exports = __webpack_require__(148);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 window.GameEvent = new (function () {
@@ -109,12 +111,11 @@ Vue.component('board', __webpack_require__(136));
 Vue.component('description', __webpack_require__(139));
 Vue.component('instance-selects', __webpack_require__(3));
 Vue.component('general-chat', __webpack_require__(142));
-Vue.component('svg-arrows', __webpack_require__(145));
 
 var game = new Vue({
     el: '#game',
     data: {
-        currentInstance: { "users": [{ "id": "gamer" }, { "id": 0, "primaryColor": '#870000', "secondaryColor": '#190A05', 'name': 'Local A.I.' }], "edges": [] },
+        currentInstance: _defineProperty({ "id": 0, "users": [{ "id": "gamer" }, { "id": 0, "primaryColor": '#870000', "secondaryColor": '#190A05', 'name': 'Local A.I.' }], "edges": [] }, 'edges', []),
         instances: instances,
         gamer: gamer
     },
@@ -123,13 +124,13 @@ var game = new Vue({
         hasPlayerEdge: function hasPlayerEdge(vert) {
             var edge = this.hasEdge(0, vert);
             if (edge != false) {
-                return this.currentInstance.vertices.players[edge[0]];
+                return true;
             }
             edge = this.hasEdge(1, vert);
             if (edge != false) {
-                return this.currentInstance.vertices.players[edge[0]];
+                return true;
             }
-            return '';
+            return false;
         },
         addEdge: function addEdge(vert1, vert2) {
             this.currentInstance.edges.unshift([vert1, vert2]);
@@ -146,15 +147,42 @@ var game = new Vue({
             return result;
         },
         locationSelected: function locationSelected(location) {
-            this.addEdge(this.currentInstance.edges.length % 2, location);
+            console.log('this.currentInstance');
+            console.log(this.currentInstance);
+            if (this.currentInstance.id == 0) {
+                if (!this.hasPlayerEdge(location)) {
+                    this.addEdge(0, location);
+                    var randomStrat = 2;
+                    if (this.currentInstance.edges.length < 9) {
+                        do {
+                            randomStrat = Math.floor(Math.random() * 8) + 2;
+                        } while (this.hasPlayerEdge(randomStrat));
+                        var vm = this;
+                        setTimeout(function () {
+                            vm.addEdge(1, randomStrat);
+                        }, 100);
+                    }
+                }
+            } else {
+                axios.post('api/instance/' + this.currentInstance.id, { action: 'add', edge: [this.gamer.id, location] }).then(function (response) {});
+            }
+        },
+        instanceUpdated: function instanceUpdated(instance) {
+            console.log('intntnttn');
+            console.log(instance);
+            this.currentInstance.edges = instance.edges;
         },
         instanceSelected: function instanceSelected(instance) {
+            this.currentInstance.id = instance.id;
             this.currentInstance.edges = JSON.parse(instance.edges);
             this.currentInstance.users = instance.users;
             window.scrollTo(0, 0);
-            _.forEach(document.getElementsByClassName('board-load'), function (animation) {
-                animation.beginElement();
-            });
+            document.getElementById('nav').className = 'animated bounceOutUp';
+            setTimeout(function () {
+                _.forEach(document.getElementsByClassName('board-load'), function (animation) {
+                    animation.beginElement();
+                });
+            }, 400);
         }
     },
     created: function created() {
@@ -166,11 +194,11 @@ var game = new Vue({
         GameEvent.listen('instanceSelected', function (instance) {
             return _this.instanceSelected(instance);
         });
+        GameEvent.listen('instanceUpdated', function (instance) {
+            return _this.instanceUpdated(instance);
+        });
     },
-    mounted: function mounted() {
-        console.log("Tic Tac Toe Board Loaded:");
-        console.log(this.currentInstance);
-    }
+    mounted: function mounted() {}
 });
 
 /***/ }),
@@ -297,7 +325,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             range: _.range(0, this.segments * this.segments, 1),
             size: 300,
             grid: 100,
-            offset: 0
+            offset: 0,
+            localInstance: this.instance
         };
     },
     methods: {
@@ -315,34 +344,40 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.offset = (x - this.size) / 2;
             this.grid = this.size / this.segments;
             document.getElementsByClassName('the-grid')[0].style.margin = "0 " + this.offset + 'px';
+        },
+        instanceUpdated: function instanceUpdated(instance) {
+            console.log('instanceUpdated');
+            console.log(this.localInstance);
+            this.localInstance.edges = instance.edges;
+            console.log(this.localInstance);
         }
     },
     computed: {
         playerXName: function playerXName() {
-            return this.instance.users[0].id == 'gamer' ? this.gamer.name : this.instance.users[0].name;
+            return this.localInstance.users[0].id == 'gamer' ? this.gamer.name : this.localInstance.users[0].name;
         },
         playerOName: function playerOName() {
-            return this.instance.users[1].id == 'gamer' ? this.gamer.name : this.instance.users[1].name;
+            return this.localInstance.users[1].id == 'gamer' ? this.gamer.name : this.localInstance.users[1].name;
         },
         playerXPrimary: function playerXPrimary() {
-            return this.instance.users[0].id == 'gamer' ? this.gamer.primaryColor : this.instance.users[0].primaryColor;
+            return this.localInstance.users[0].id == 'gamer' ? this.gamer.primaryColor : this.localInstance.users[0].primaryColor;
         },
         playerXSecondary: function playerXSecondary() {
-            return this.instance.users[0].id == 'gamer' ? this.gamer.secondaryColor : this.instance.users[0].secondaryColor;
+            return this.localInstance.users[0].id == 'gamer' ? this.gamer.secondaryColor : this.localInstance.users[0].secondaryColor;
         },
         playerOPrimary: function playerOPrimary() {
-            return this.instance.users[1].id == 'gamer' ? this.gamer.primaryColor : this.instance.users[1].primaryColor;
+            return this.localInstance.users[1].id == 'gamer' ? this.gamer.primaryColor : this.localInstance.users[1].primaryColor;
         },
         playerOSecondary: function playerOSecondary() {
-            return this.instance.users[1].id == 'gamer' ? this.gamer.secondaryColor : this.instance.users[1].secondaryColor;
+            return this.localInstance.users[1].id == 'gamer' ? this.gamer.secondaryColor : this.localInstance.users[1].secondaryColor;
         },
         playerExEdges: function playerExEdges() {
-            return _.filter(this.instance.edges, function (edge) {
+            return _.filter(this.localInstance.edges, function (edge) {
                 return edge[0] == 0;
             });
         },
         playerCircleEdges: function playerCircleEdges() {
-            return _.filter(this.instance.edges, function (edge) {
+            return _.filter(this.localInstance.edges, function (edge) {
                 return edge[0] == 1;
             });
         }
@@ -350,6 +385,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.setSize();
         window.addEventListener('resize', this.setSize);
+    },
+    created: function created() {
+        var _this = this;
+
+        GameEvent.listen('instanceUpdated', function (instance) {
+            return _this.instanceUpdated(instance);
+        });
     },
     beforeDestroy: function beforeDestroy() {
         window.removeEventListener('resize', this.setSize);
@@ -852,7 +894,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         messageSent: function messageSent(message) {
-            this.messages.push(message);
+            this.messages.unshift(message);
         },
         sendMessage: function sendMessage(message) {
             axios.post('/messenger', { message: message.target.message.value }).then(function (response) {
@@ -953,208 +995,6 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-ee419346", module.exports)
-  }
-}
-
-/***/ }),
-
-/***/ 145:
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(2)
-/* script */
-var __vue_script__ = __webpack_require__(146)
-/* template */
-var __vue_template__ = __webpack_require__(147)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\master\\SVGBackground.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-369f4b22", Component.options)
-  } else {
-    hotAPI.reload("data-v-369f4b22", Component.options)
-' + '  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-
-/***/ 146:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['width', 'instances', 'frequency'],
-    data: function data() {
-        return {
-            size: 50,
-            offset: 15,
-            freq: this.frequency,
-            height: this.instances.length * 64
-        };
-    },
-    methods: {
-        pointsFrom: function pointsFrom(arrows) {
-            return 0 - arrows[3] * this.offset - arrows[1] + "," + arrows[2] + " " + (this.size - arrows[3] * this.offset - arrows[1]) + "," + (arrows[2] + this.size) + " " + (0 - arrows[3] * this.offset - arrows[1]) + "," + (arrows[2] + this.size * 2);
-        },
-        pointsTo: function pointsTo(arrows) {
-            return this.width - arrows[3] * this.offset + "," + arrows[2] + " " + (this.width + this.size - arrows[3] * this.offset) + "," + (arrows[2] + this.size) + " " + (this.width - arrows[3] * this.offset) + "," + (arrows[2] + this.size * 2);
-        },
-        rando: function rando(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-    },
-    computed: {
-        arrows: function arrows() {
-            var arrowSet = [];
-            for (var i = 0; i <= this.freq; i++) {
-                var speed = this.rando(1, 15) * .2 + .3;
-                var offsetX = this.rando(1, 100) / 100 * this.size - this.size * 2;
-                var offsetY = this.rando(0, 100) / 100 * this.height;
-                var length = this.rando(1, 10);
-                for (var j = 0; j <= length; j++) {
-                    arrowSet.push([speed, offsetX, offsetY, j]);
-                }
-            }
-            return arrowSet;
-        }
-    },
-    mounted: function mounted() {
-        var vm = this;
-        setInterval(function () {
-            vm.freq += Math.pow(-1, vm.freq % 1);
-        }, 6000);
-    }
-});
-
-/***/ }),
-
-/***/ 147:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "svg",
-    {
-      staticClass: "ghost",
-      attrs: { height: _vm.height, width: _vm.width, id: "svg-arrows" }
-    },
-    [
-      _c(
-        "linearGradient",
-        { attrs: { id: "g", x2: "1", y2: "1" } },
-        [
-          _c("stop", { attrs: { "stop-color": "#bdfff3" } }),
-          _vm._v(" "),
-          _c("stop", { attrs: { offset: "100%", "stop-color": "#4ac29a" } })
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("rect", { attrs: { width: "100%", height: "100%", fill: "url(#g)" } }),
-      _vm._v(" "),
-      _vm._l(_vm.arrows, function(arrow) {
-        return _c(
-          "polyline",
-          {
-            staticClass: "polyline",
-            attrs: {
-              test: arrow,
-              fill: "none",
-              stroke: "#fff",
-              "stroke-width": "6"
-            }
-          },
-          [
-            _c("animate", {
-              attrs: {
-                attributeName: "points",
-                dur: arrow[0] + "s",
-                from: _vm.pointsFrom(arrow),
-                to: _vm.pointsTo(arrow),
-                restart: "whenNotActive",
-                repeatCount: "indefinite"
-              }
-            }),
-            _vm._v(" "),
-            _c("animate", {
-              attrs: {
-                attributeName: "opacity",
-                dur: "6s",
-                from: 1,
-                to: 0,
-                repeatCount: "indefinite"
-              }
-            })
-          ]
-        )
-      })
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-369f4b22", module.exports)
   }
 }
 

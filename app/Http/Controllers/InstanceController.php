@@ -85,6 +85,12 @@ class InstanceController extends Controller
         //
     }
 
+
+
+    public function turn(Request $request, Instance $instance){
+        return $instance->action($request->action, $request->edge);
+    }
+
     public function join(Request $request){
         $user = Auth::user();
         $startings = Instance::where([['status','Starting'],['schematic_id',$request->schematic]])->get();

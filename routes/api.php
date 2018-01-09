@@ -19,6 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/user/{user}', 'HomeController@editUser');
 
+
+Route::post('/instance/{instance}', 'InstanceController@turn');
+
+
+
 Route::get('/tictactoe/{tictactoe}', 'TicTacToeController@show');
-Route::post('/tictactoe/{tictactoe}', 'TicTacToeController@update');
+
 Route::put('/tictactoe', 'TicTacToeController@create');

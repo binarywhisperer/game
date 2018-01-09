@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use JavaScript;
-use App\TicTacToe;
+use App\Instances\TicTacToe;
 use Illuminate\Http\Request;
 
 class TicTacToeController extends Controller
@@ -118,5 +118,11 @@ class TicTacToeController extends Controller
     {
         $tictactoe->users = $tictactoe->users()->get();
         return $tictactoe;
+    }
+
+
+    public function turn(Request $request, $tictactoe){
+        $tictac = TicTacToe::find($tictactoe);
+        return $tictac->action($request->action, $request->edge);
     }
 }
