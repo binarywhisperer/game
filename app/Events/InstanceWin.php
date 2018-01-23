@@ -32,7 +32,7 @@ class InstanceWin  implements ShouldBroadcast
         $instance->status = "Complete";
         $instance->save();
 
-        $game = new stdClass();
+        $game = new \stdClass();
         $game->name = "G.A.M.E.";
         $game->primaryColor = "#fff";
         $game->secondaryColor = "#fff";
