@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Redis;
+use App\Events\MessageSent;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,6 +13,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/logout',function(){
+    Auth::logout();
+    return redirect('/');
+});
+Auth::routes();
 
-Route::get('/','GameController@index');
+Route::get('/', 'HomeController@home');
 
