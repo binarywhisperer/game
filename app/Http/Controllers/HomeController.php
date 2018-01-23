@@ -11,20 +11,6 @@ use App\Schematic;
 class HomeController extends Controller
 {
 
-    protected $board = [
-        'vertices' => [
-            'players' => [
-                0 => 'X',
-                1 => 'O'
-            ],
-            'locations' => [
-                2,3,4,5,6,7,8,9,10
-            ]
-        ],
-        'edges' => [[0,2]]
-    ];
-
-
     function home(){
         $user = Auth::user();
         if(!$user){
@@ -39,6 +25,7 @@ class HomeController extends Controller
         ]);
         return view('game');
     }
+
     function editUser(Request $request, User $user){
         $user->email = $request->email;
         $user->name = $request->name;
@@ -47,6 +34,7 @@ class HomeController extends Controller
         $user->save();
         return $user;
     }
+
     function login(){
         return view('tictactoe');
     }

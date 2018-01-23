@@ -13,17 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/messenger', 'MessengerController@send');
 
 Route::post('/user/{user}', 'HomeController@editUser');
 
-
+Route::post('/instance', 'InstanceController@join');
 Route::post('/instance/{instance}', 'InstanceController@turn');
 
-
-
-Route::get('/tictactoe/{tictactoe}', 'TicTacToeController@show');
-
-Route::put('/tictactoe', 'TicTacToeController@create');

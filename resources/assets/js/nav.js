@@ -1,6 +1,5 @@
 Vue.component('gamer', require('./components/master/Gamer.vue'));
 Vue.component('schematics', require('./components/master/Schematics.vue'));
-
 Vue.component('instance-selects', require('./components/tictactoe/Instance.vue'));
 
 const nav = new Vue({
@@ -10,12 +9,12 @@ const nav = new Vue({
         gamer: gamer,
         schematics: schematics,
         findingGame: findingGame,
-        instances: instances,
+        instances: instances
     },
     methods: {
         updateInstance(index, instance){
             Vue.set(this.instances, index, instance);
-        }
+    }
     },
     created(){
 

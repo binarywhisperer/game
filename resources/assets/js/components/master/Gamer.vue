@@ -48,28 +48,8 @@
 
             <a class="btn btn-link" href="/logout">Log Out</a>
         </form>
-        <div class="schematic">
-            <form @submit.prevent="findGame">
-                <div class="field has-addons">
-                    <div class="control is-expanded">
-                        <div class="select is-fullwidth">
-                            <select name="schematic">
-                                <option v-for="schematic in schematics" :value="schematic.id">{{schematic.name}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="control">
-                        <button type="submit" class="button is-primary">Find Game</button>
-                    </div>
-                </div>
-            </form>
-            <div class="findingGame" v-if="$root.findingGame">
-                <p>Finding game...</p>
-                <div class="loading-gif">
-                    <img src="img/pacman.gif"/>
-                </div>
-            </div>
-        </div>
+        <schematics :schematics="schematics"
+                    :gamer="gamer"></schematics>
     </div>
 </template>
 <script>
@@ -95,11 +75,6 @@
                 this.gamer.primaryColor = this.originalGamer.primaryColor;
                 this.gamer.secondaryColor = this.originalGamer.secondaryColor;
                 this.editing = false;
-            },
-            findGame(e){
-                axios.post('/instance', {schematic: e.target.schematic.value}).then(response => {
-                    this.$root.findingGame = true;
-                });
             }
         },
         computed: {

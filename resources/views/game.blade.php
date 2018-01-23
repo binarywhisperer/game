@@ -2,16 +2,22 @@
 
 @section('content')
     <div class="game-container" id="game" onClick="document.getElementById('nav').className = 'animated bounceOutUp'">
-        <board :segments="3"
-               :gamer="gamer"
-               :instance="currentInstance"></board>
+        <tictactoe-board v-if="currentInstance.schematic == 1"
+                         :segments="3"
+                         :gamer="gamer"
+                         :instance="currentInstance"></tictactoe-board>
+        <checkers-board  v-if="currentInstance.schematic == 2"
+                         :segments="8"
+                         :gamer="gamer"
+                         :instance="currentInstance"></checkers-board>
         <div class="game-description">
-            <general-chat></general-chat>
-            <description></description>
+            <general-chat :gamer="gamer"></general-chat>
+            <tictactoe-description v-if="currentInstance.schematic == 1"></tictactoe-description>
+            <checkers-description v-if="currentInstance.schematic == 2"></checkers-description>
         </div>
     </div>
 @endsection
 
 @section('javascript')
-    <script src="js/tictactoe.js"></script>
+    <script src="js/game.js"></script>
 @endsection

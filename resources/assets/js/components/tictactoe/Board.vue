@@ -81,11 +81,63 @@
                 this.grid = this.size / this.segments;
                 document.getElementsByClassName('the-grid')[0].style.margin = "0 " + this.offset + 'px';
             },
+            instanceWin(message){
+                alert(message.message);
+            },
+            instanceUpdated(instance){
+                this.currentInstance.edges =  JSON.parse(instance.edges);
+            },
             instanceUpdated(instance){
                 console.log('instanceUpdated');
                 console.log(this.localInstance);
                 this.localInstance.edges = instance.edges;
                 console.log(this.localInstance);
+            },
+            hasPlayerEdge(vert){
+                let edge = this.hasEdge(0,vert);
+                if(edge != false){
+                    return true;
+                }
+                edge = this.hasEdge(1,vert);
+                if(edge != false){
+                    return true;
+                }
+                return false;
+            },
+            addEdge(vert1, vert2){
+                this.instance.edges.unshift([vert1,vert2]);
+            },
+            hasEdge(vert1, vert2){
+                let result = false;
+                let edges = this.instance.edges;
+                _.forEach(edges, function(edge){
+                    if((edge[0] == vert1 && edge[1] == vert2) || (edge[0] == vert2 && edge[1] == vert1)){
+                        result = edge;
+                        return;
+                    }
+                });
+                return result;
+            },
+            locationSelected(location){
+                if(this.instance.id == 0){
+                    if(!this.hasPlayerEdge(location)){
+                        this.addEdge(0, location);
+                        let randomStrat = 2;
+                        if(this.instance.edges.length < 9){
+                            do{
+                                randomStrat = Math.floor(Math.random() * 8) + 2;
+                            }while(this.hasPlayerEdge(randomStrat));
+                            let vm = this;
+                            setTimeout(function(){
+                                vm.addEdge(1, randomStrat);
+                            }, 100);
+                        }
+                    }
+                }else{
+                    axios.post('api/instance/' + this.instance.id, {action: 'add', edge: [this.gamer.id,location] }).then(response => {
+
+                    });
+                }
             }
         },
         computed:{
@@ -111,7 +163,9 @@
             window.addEventListener('resize',  this.setSize);
         },
         created(){
+            GameEvent.listen('locationSelected', (location) => this.locationSelected(location));
             GameEvent.listen('instanceUpdated', (instance) => this.instanceUpdated(instance));
+            GameEvent.listen('instanceWin', (message) => this.instanceWin(message));
         },
         beforeDestroy(){
             window.removeEventListener('resize', this.setSize);

@@ -22,6 +22,7 @@
 <script>
 
     export default {
+        props:['gamer'],
         data: function(){
                 return {
                     time: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"),
@@ -33,7 +34,7 @@
                     this.messages.unshift(message);
                 },
                 sendMessage(message){
-                    axios.post('/messenger', {message: message.target.message.value}).then(response => {
+                    axios.post('api/messenger', {gamer: gamer.id, message: message.target.message.value}).then(response => {
                         message.target.message.value = "";
                      });
                 }

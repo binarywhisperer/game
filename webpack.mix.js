@@ -11,6 +11,6 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/tictactoe.js', 'public/js')
+mix.js('resources/assets/js/game.js', 'public/js')
     .js('resources/assets/js/master.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css');
