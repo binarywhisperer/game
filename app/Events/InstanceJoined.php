@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Support\Facades\Event;
-
+use App\User;
 
 class InstanceJoined implements ShouldBroadcast
 {
@@ -18,15 +18,18 @@ class InstanceJoined implements ShouldBroadcast
 
     public $instance;
     public $message;
+    public $edges;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($instance)
+    public function __construct($instance,$user_id)
     {
+        $user = User::find($user_id);
         $this->instance = $instance;
-        $this->message = "NEW GAME! #" . $instance->id;// . $instance->users[0]->name . " vs " . $instance->users[1]->name;
+        $this->edges = $instance->edges;
+        $this->message = "NEW GAME! #" . $instance->id . PHP_EOL . $user->name . " vs " . $instance->users->last()->name;
     }
 
     /**

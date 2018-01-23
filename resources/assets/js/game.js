@@ -18,6 +18,9 @@ Vue.component('tictactoe-description', require('./components/tictactoe/Descripti
 Vue.component('checkers-board', require('./components/checkers/Board.vue'));
 Vue.component('checkers-description', require('./components/checkers/Description.vue'));
 
+Vue.component('chess-board', require('./components/chess/Board.vue'));
+Vue.component('chess-description', require('./components/chess/Description.vue'));
+
 const game = new Vue({
     el: '#game',
     data:{
@@ -27,8 +30,6 @@ const game = new Vue({
     },
     methods: {
         instanceSelected(instance){
-            console.log("Schematics Coming...");
-            console.log(this.currentInstance);
             this.currentInstance.id = instance.id;
             this.currentInstance.edges = JSON.parse(instance.edges);
             this.currentInstance.users = instance.users;
@@ -40,13 +41,21 @@ const game = new Vue({
                     animation.beginElement();
                 });
             },400);
+            console.log("Current Instance:");
             console.log(this.currentInstance);
+        },
+        modalMessage(message){
+            document.getElementById('modal').style.display = "block";
+            document.getElementById('modalMessage').textContent = message;
+        }, instanceWin(message){
+
         }
     },
     created(){
         GameEvent.listen('instanceSelected', (instance) => this.instanceSelected(instance));
+        GameEvent.listen('modalMessage', (message) => this.modalMessage(message));
+        GameEvent.listen('instanceWin', (message) => this.instanceWin(message));
     },
     mounted(){
-        console.log(this.currentInstance);
     }
 });

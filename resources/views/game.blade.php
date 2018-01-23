@@ -10,10 +10,16 @@
                          :segments="8"
                          :gamer="gamer"
                          :instance="currentInstance"></checkers-board>
+        <chess-board  v-if="currentInstance.schematic == 3"
+                         :segments="8"
+                         :gamer="gamer"
+                         :instance="currentInstance"></chess-board>
+
         <div class="game-description">
             <general-chat :gamer="gamer"></general-chat>
             <tictactoe-description v-if="currentInstance.schematic == 1"></tictactoe-description>
             <checkers-description v-if="currentInstance.schematic == 2"></checkers-description>
+            <chess-description v-if="currentInstance.schematic == 3"></chess-description>
         </div>
     </div>
 @endsection

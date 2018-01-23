@@ -19,8 +19,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('points')->default(0);
-            $table->string('primaryColor')->default('#ffffff');
-            $table->string('secondaryColor')->default('#000000');
+            $table->string('primaryColor')->default('#293f84');
+            $table->string('secondaryColor')->default('#8aa192');
             $table->rememberToken();
             $table->timestamps();
         });

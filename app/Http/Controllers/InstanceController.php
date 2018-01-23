@@ -38,6 +38,11 @@ class InstanceController extends Controller
             $newInstance->generate($request, $user);
         }
     }
+    public function selects($userid){
+        $user = User::find($userid);
+        return  $user->selects()->toJson();
+    }
+
     private function createInstance($schematic_id){
         $schematic = Schematic::find($schematic_id);
         if($schematic->name == 'Tic Tac Toe'){

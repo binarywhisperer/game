@@ -17,10 +17,11 @@
     <link href="css/animate.min.css" rel="stylesheet">
 </head>
 <body>
-@include ('master.variables')
 @include ('master.nav')
 @yield('content')
 @include ('master.footer')
+@include ('master.modal')
+@include ('master.variables')
 <script>var socketUrl = "{{ env('APP_URL') }}:3000"; </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 <script src="js/master.js"></script>
