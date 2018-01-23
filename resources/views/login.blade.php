@@ -138,9 +138,7 @@
         </div>
         <div class="field">
             <p class="control">
-                <button type="submit" class="button is-primary">
-                    Create Account
-                </button>
+                <input type="submit" class="button is-primary" value="Create Account">
             </p>
         </div>
     </form>

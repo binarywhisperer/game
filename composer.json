@@ -9,6 +9,7 @@
         "clue/graph": "0.9.*",
         "fideloper/proxy": "~3.3",
         "fzaninotto/faker": "^1.7",
+        "guzzlehttp/guzzle": "^6.3",
         "laracasts/utilities": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/homestead": "^6.5",
