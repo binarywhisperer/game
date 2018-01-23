@@ -14,7 +14,15 @@ const nav = new Vue({
     methods: {
         updateInstance(index, instance){
             Vue.set(this.instances, index, instance);
-    }
+        },
+        refreshInstances(){
+            let vm = this;
+            axios.get('api/'+ this.gamer.id +  '/instances').then(response => {
+                console.log('response.instances');
+                console.log(response.data);
+                vm.instances = response.data;
+            });
+        }
     },
     created(){
 
@@ -23,8 +31,8 @@ const nav = new Vue({
         let vm = this;
         socket.on( gamer.id + ':App\\Events\\InstanceJoined', function(data){
             vm.findingGame = false;
-            alert(data.message);
-            location.reload();
+            GameEvent.fire('modalMessage', data.message);
+            vm.refreshInstances();
         });
         socket.on( gamer.id + ':App\\Events\\InstanceUpdated', function(data){
             console.log("socket InstanceUpdated");
@@ -39,7 +47,8 @@ const nav = new Vue({
             GameEvent.fire('instanceUpdated', vm.instances[instanceId]);
         });
         socket.on( gamer.id + ':App\\Events\\InstanceWin', function(data){
-            GameEvent.fire('instanceWin', data);
+            GameEvent.fire('modalMessage', data.message);
+            vm.refreshInstances();
         });
     }
 });

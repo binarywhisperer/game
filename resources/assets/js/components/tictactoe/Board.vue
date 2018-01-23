@@ -82,7 +82,7 @@
                 document.getElementsByClassName('the-grid')[0].style.margin = "0 " + this.offset + 'px';
             },
             instanceWin(message){
-                alert(message.message);
+                GameEvent.fire('messageModal', message);
             },
             instanceUpdated(instance){
                 this.currentInstance.edges =  JSON.parse(instance.edges);

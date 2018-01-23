@@ -1,6 +1,5 @@
 <template>
 <div class="instance-select" @click="selectInstance">
-{{schematicName()}}
             <div class="instance-label"><div class="label-type">{{playerIcon(gamer.id)}}</div><div class="label-data label-gamer" :style="{background:gamer.primaryColor,borderColor:gamer.secondaryColor}">{{gamer.name}}</div></div>
             <div class="instance-label" :opponent="opponent" v-for="opponent in opponents" :key="opponent.id">
                 <div class="label-type">{{playerIcon(opponent.id)}}</div><div class="label-data label-gamer" :style="{background:opponent.primaryColor,borderColor:opponent.secondaryColor}">{{opponent.name}}</div>
@@ -21,18 +20,6 @@
                 }
             },
         methods:{
-            schematicName(){
-                if(this.instance.schematic == 1){
-                    return 'Tic Tac Toe';
-                }
-                if(this.instance.schematic == 2){
-                    return 'Checkers';
-                }
-                if(this.instance.schematic == 3){
-                    return 'Chess';
-                }
-                return 'unknown' + this.instance.schematic;
-            },
             playerIcon(player){
                 if(this.instance.users[0].id == player ){
                     return 'X';

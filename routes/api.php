@@ -17,6 +17,8 @@ Route::post('/messenger', 'MessengerController@send');
 
 Route::post('/user/{user}', 'HomeController@editUser');
 
+Route::get('/{userid}/instances', 'InstanceController@selects');
+
 Route::post('/instance', 'InstanceController@join');
 Route::post('/instance/{instance}', 'InstanceController@turn');
 

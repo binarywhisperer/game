@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Events\InstanceJoined;
 use App\Events\InstanceWin;
 use App\Events\InstanceUpdated;
 use App\Events\MessageSent;

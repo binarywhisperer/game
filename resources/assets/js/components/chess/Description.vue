@@ -1,7 +1,7 @@
 <template>
 <div>
-   <h1>Checkers</h1>
-   <p>Draughts (British English) or checkers (American English) is a group of strategy board games for two players which involve diagonal moves of uniform game pieces and mandatory captures by jumping over opponent pieces.</p>
+   <h1>Chess</h1>
+   <p>Chess is a two-player strategy board game played on a chessboard, a checkered gameboard with 64 squares arranged in an 8×8 grid.</p>
    </div>
 </template>
 

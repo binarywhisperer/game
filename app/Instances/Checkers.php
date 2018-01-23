@@ -39,7 +39,35 @@ class Checkers extends Instance
 
         $edges = new Edges();
         $edges->instance_id = $tictactoe->id;
-        $edges->edges = json_encode([]);
+        $edgeJSON = [];
+        $edgeJSON[] = [0,1];
+        $edgeJSON[] = [0,3];
+        $edgeJSON[] = [0,5];
+        $edgeJSON[] = [0,7];
+        $edgeJSON[] = [0,9];
+        $edgeJSON[] = [0,10];
+        $edgeJSON[] = [0,12];
+        $edgeJSON[] = [0,14];
+        $edgeJSON[] = [0,16];
+        $edgeJSON[] = [0,19];
+        $edgeJSON[] = [0,21];
+        $edgeJSON[] = [0,23];
+        $edgeJSON[] = [0,25];
+
+        $edgeJSON[] = [1,42];
+        $edgeJSON[] = [1,44];
+        $edgeJSON[] = [1,46];
+        $edgeJSON[] = [1,48];
+        $edgeJSON[] = [1,51];
+        $edgeJSON[] = [1,53];
+        $edgeJSON[] = [1,55];
+        $edgeJSON[] = [1,57];
+        $edgeJSON[] = [1,58];
+        $edgeJSON[] = [1,60];
+        $edgeJSON[] = [1,62];
+        $edgeJSON[] = [1,64];
+
+        $edges->edges = json_encode($edgeJSON);
         $edges->save();
     }
 
@@ -67,7 +95,7 @@ class Checkers extends Instance
     function addUser($addUser){
         if(!$this->hasUser($addUser->id)){
             $this->users()->attach($addUser->id);
-            event(new InstanceJoined($this));
+            event(new InstanceJoined($this,$addUser->id ));
             return true;
         }
         return false;

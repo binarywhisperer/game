@@ -23,6 +23,8 @@ class InstanceWin  implements ShouldBroadcast
      */
     public function __construct($instance, $winner)
     {
+        $winner->points = $winner->points + 1000;
+        $winner->save();
         $this->message = "The winner is " . $winner->name . "!";
         $this->instance = $instance;
         $instance->status = "Complete";

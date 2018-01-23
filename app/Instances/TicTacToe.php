@@ -44,8 +44,11 @@ class TicTacToe extends Instance
     }
 
     function turn($request){
-        return $this->action($request->action, $request->edge);
+        $this->action($request->action, $request->edge);
+        $update = TicTacToe::find($this->id);
+        $update->checkForVictory();
     }
+
     function hasUser($id){
         foreach($this->users as $user){
             if($user->id === $id){
@@ -67,7 +70,7 @@ class TicTacToe extends Instance
     function addUser($addUser){
         if(!$this->hasUser($addUser->id)){
             $this->users()->attach($addUser->id);
-            event(new InstanceJoined($this));
+            event(new InstanceJoined($this,$addUser->id ));
             return true;
         }
         return false;
@@ -77,7 +80,7 @@ class TicTacToe extends Instance
     function checkForVictory(){
         $winner = -1;
         foreach([0,1] as $user){
-            foreach([3,5,6,7,9] as $possible){
+            for($possible = 2; $possible < 12;$possible++){
 
                 if($this->hasEdge($user, $possible - 1) && $this->hasEdge($user, $possible) && $this->hasEdge($user, $possible + 1)){
                     //Horizontal
@@ -131,8 +134,9 @@ class TicTacToe extends Instance
             $edges->edges = json_encode($json);
             $edges->save();
             event(new InstanceUpdated($this, $edges));
+
+
         }
-        $this->checkForVictory();
     }
 }
 
