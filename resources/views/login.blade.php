@@ -61,7 +61,7 @@
 </head>
 <body>
 <div class="flex-container">
-    <h2>Log In</h2>
+    <h2>Log In Here</h2>
     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <div class="field">
